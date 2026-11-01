@@ -32,6 +32,11 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Search prediction markets | `betteroff_search_markets` |
 | Reported vault yields | `betteroff_get_vault_yields` |
 | Financial checklist progress | `betteroff_get_checklist` |
+| Household deadlines and renewals | `betteroff_list_deadlines` |
+| Recorded insurance policies | `betteroff_list_insurance` |
+| Budgets against spending and goal progress | `betteroff_get_budgets` |
+| Quarterly estimated tax from stated figures | `betteroff_estimate_quarterly_tax` |
+| Yearly giving and fee totals | `betteroff_get_giving_and_fees` |
 | Debt balances and missing terms | `betteroff_list_debts` |
 | Arithmetic payoff scenario | `betteroff_simulate_debt_payoff` |
 | Permitted financial changes | `betteroff_search_activity` |
@@ -40,6 +45,8 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Prepare category correction | `betteroff_propose_category_change` |
 | Prepare recurring classification | `betteroff_propose_recurring_kind` |
 | Prepare stated debt terms | `betteroff_propose_debt_details` |
+| Prepare user-stated allocation targets | `betteroff_propose_allocation_targets` |
+| Prepare a user-stated budget | `betteroff_propose_budget` |
 | Send approved diagnostic feedback | `betteroff_submit_feedback` |
 
 <!-- transfers -->
