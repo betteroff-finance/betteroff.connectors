@@ -46,4 +46,4 @@ The user's explicit instructions take priority over this skill. When the `househ
 
 ## Limits
 
-Describe allocation and concentration as facts. When the user asks whether to rebalance, compare the current allocation with a target the user states. Do not supply a target allocation or recommend buying or selling a security. The tools cannot place trades.
+Describe allocation and concentration as facts. When the user asks whether to rebalance, ask for their target if they have not stated one, then call `betteroff_get_portfolio` with `targets` using the returned group names and quote `drift`: `driftPercent` and `valueToTarget` per group. Do not compute drift yourself. Do not supply a target allocation or recommend buying or selling a security. The tools cannot place trades.

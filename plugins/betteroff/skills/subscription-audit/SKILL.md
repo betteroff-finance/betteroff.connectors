@@ -47,7 +47,7 @@ Flag review candidates, each with the evidence that makes it stand out:
 - `stale: true`, or a `lastDate` long before the expected `frequency`.
 - A large share of total recurring outflow.
 
-State a monthly or annual total only when every included amount uses one currency and the frequency allows a stated conversion. Show the conversion, for example "USD 15.99 weekly × 52 ÷ 12".
+For monthly or annual totals, quote `totals` from `betteroff_list_recurring` (per currency and direction) and name `unprojectedActiveCount` streams left out. Do not add amounts yourself. For one item, quote its `projectedAnnualAmount`.
 
 ## Prepare classifications
 
