@@ -50,9 +50,9 @@ class ToolCatalogTests(unittest.TestCase):
         catalog = json.loads((self.root / 'tools.json').read_text())
         spec = {'info': {'version': catalog['serverVersion']}, 'paths': {
             f"/v1/tools/{tool['name']}": {'post': {
-                'operationId': tool['name'], 'summary': tool['title'],
+                'operationId': tool['name'], 'summary': tool['title'], 'description': tool['description'],
                 'security': [{'agentOAuth': tool['scopes']}],
-                'x-mcp-annotations': {'readOnlyHint': tool['readOnly']},
+                'x-mcp-annotations': {'readOnlyHint': tool['readOnly'], 'destructiveHint': tool['destructive']},
             }} for tool in catalog['tools']}}
         target = self.root / 'spec.json'
         catalog['openapi'] = target.as_uri()
@@ -64,12 +64,37 @@ class ToolCatalogTests(unittest.TestCase):
             operation = spec['paths'][f"/v1/tools/{tool['name']}"]['post']
             for annotation in ({'readOnlyHint': not read_only}, {}, {'readOnlyHint': int(read_only)}):
                 with self.subTest(read_only=read_only, annotation=annotation):
-                    operation['x-mcp-annotations'] = annotation
+                    operation['x-mcp-annotations'] = {'destructiveHint': tool['destructive'], **annotation}
                     target.write_text(json.dumps(spec))
                     errors = check_live(self.root)
                     self.assertEqual(len(errors), 1)
                     self.assertIn(f"{tool['name']}: readOnly", errors[0])
-            operation['x-mcp-annotations'] = {'readOnlyHint': read_only}
+            operation['x-mcp-annotations'] = {'readOnlyHint': read_only, 'destructiveHint': tool['destructive']}
+
+    def test_live_description_destructive_and_count_drift_fail(self):
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        spec = {'info': {'version': catalog['serverVersion']}, 'paths': {
+            f"/v1/tools/{tool['name']}": {'post': {
+                'operationId': tool['name'], 'summary': tool['title'], 'description': tool['description'],
+                'security': [{'agentOAuth': tool['scopes']}],
+                'x-mcp-annotations': {'readOnlyHint': tool['readOnly'], 'destructiveHint': tool['destructive']},
+            }} for tool in catalog['tools']}}
+        first, second = catalog['tools'][0]['name'], catalog['tools'][1]['name']
+        spec['paths'][f'/v1/tools/{first}']['post']['description'] = 'Changed on the server.'
+        spec['paths'][f'/v1/tools/{second}']['post']['x-mcp-annotations']['destructiveHint'] = True
+        spec['paths']['/v1/tools/betteroff_new_tool'] = {'post': {'operationId': 'betteroff_new_tool'}}
+        target = self.root / 'spec.json'
+        target.write_text(json.dumps(spec))
+        errors = '\n'.join(check_live(self.root, target.as_uri()))
+        self.assertIn(f'{first}: description differs from the API', errors)
+        self.assertIn(f'{second}: destructive False != API destructiveHint True', errors)
+        self.assertIn(f"count: API lists {len(catalog['tools']) + 1} tools, tools.json lists {len(catalog['tools'])}", errors)
+        self.assertIn('betteroff_new_tool: missing from tools.json', errors)
+
+    def test_only_cancellation_is_destructive(self):
+        catalog = json.loads((ROOT / 'tools.json').read_text())
+        self.assertEqual([t['name'] for t in catalog['tools'] if t['destructive']], ['betteroff_cancel_action_request'])
+        self.assertTrue(all(t['description'] for t in catalog['tools']))
 
     def test_live_version_tracks_server_independently_of_package(self):
         catalog = json.loads((self.root / 'tools.json').read_text())

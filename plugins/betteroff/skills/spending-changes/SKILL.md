@@ -21,7 +21,7 @@ The user's explicit instructions take priority over this skill. When the `househ
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
   - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
-  - `CORE_REQUIRED`: this tool needs BetterOff Core; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
+  - `CORE_REQUIRED`: every BetterOff tool needs BetterOff Core; Free and trials do not include tool access. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
   - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
   - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
@@ -51,7 +51,7 @@ Lead with one sentence: total spending for the period, its change against the pr
 Then list at most five changes, ordered by dollar impact. Each is one fact with its figures. Candidates:
 
 - Categories whose amount rose or fell the most against the prior period. Report the change without assigning a cause.
-- Charges from `unusualTransactions` or `monthlyOutliers`. Call matching charges possible duplicates, not confirmed duplicates or fraud.
+- Charges from `unusualTransactions` or `monthlyOutliers`. Describe them as large compared with the period's other charges. Do not call them duplicates or fraud. `unusualTransactions` leaves out payments repeated each month, such as rent.
 - A recurring charge that is new in the period, with no matching charge in the prior period, or whose `amount` differs from `averageAmount`.
 - `overallTrend` when it is not flat, with the months it covers.
 

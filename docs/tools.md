@@ -32,7 +32,7 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_get_vault_yields` | Read | `investments:read` | Reported APY of vaults available in Investing; not recommendations. |
 | `betteroff_search_markets` | Read | `investments:read` | Public FX rates, Hyperliquid spot and perpetual markets, and prediction markets. |
 | `betteroff_list_debts` | Read | `debts:read` | Debt balances, terms, and missing terms. |
-| `betteroff_simulate_debt_payoff` | Read | `debts:read` | Arithmetic payoff scenarios; refuses when terms are missing. |
+| `betteroff_simulate_debt_payoff` | Read | `debts:read` | Arithmetic payoff scenarios for debts with terms; lists skipped debts and why. |
 | `betteroff_get_checklist` | Read | `checklist:read` | Financial checklist progress, such as insurance, estate documents, and emergency fund. |
 | `betteroff_search_activity` | Read | `activity:read` | Recorded financial record changes and correction proposals. |
 | `betteroff_list_observations` | Read | `accounts:read`, `networth:read`, `transactions:read`, `cashflow:read`, `investments:read`, `debts:read` | Stored financial findings and their status. |

@@ -21,7 +21,7 @@ The user's explicit instructions take priority over this skill. When the `househ
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
   - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
-  - `CORE_REQUIRED`: this tool needs BetterOff Core; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
+  - `CORE_REQUIRED`: every BetterOff tool needs BetterOff Core; Free and trials do not include tool access. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
   - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
   - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
@@ -58,7 +58,7 @@ Then list at most five findings, ordered by dollar impact. A finding is one fact
 - Income or expenses that changed against the prior month. Give the savings rate only when `savingsRatePercent` is not null.
 - The categories with the largest absolute change. Report the change without assigning a cause.
 - A recurring charge that is new, stopped, stale, or changed in amount. Claim a missed or upcoming charge only when the result returns a date.
-- Items from `unusualTransactions` or `monthlyOutliers`. Call matching charges possible duplicates, not confirmed duplicates or fraud.
+- Items from `unusualTransactions` or `monthlyOutliers`. Describe them as large compared with the period's other charges. Do not call them duplicates or fraud. `unusualTransactions` leaves out payments repeated each month, such as rent.
 - The net worth change, split into assets and liabilities. Report `economicAttributionResidual` as change the records do not explain. Do not reconcile net worth with cash flow or suggest causes.
 
 Mention each item once, even when two reads return it. Skip facts that did not change.

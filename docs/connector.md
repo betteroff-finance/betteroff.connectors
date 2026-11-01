@@ -20,12 +20,12 @@ Confirm that the result identifies your household and reports observation dates 
 
 Connector package 0.6.0 describes hosted server 0.5.0 and defines up to 31 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
 
-- **20 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, checklist progress, observations, financial activity, market search, and reported vault yields.
+- **22 financial reads and analyses** cover setup status, accounts, net worth, cash flow, cash-plan previews, recurring items, holdings, transactions, spending, debts, checklist progress, observations, financial activity, Natural money activity, market search, and reported vault yields.
 - **Three correction proposals** cover payment categories, recurring items, and debt classifications.
-- **Five transfer request tools** prepare wallet transfers, bank transfers, and vault deposits, read request status, and cancel pending requests. See [transfer permissions](#transfer-permissions). Status is read-only; the other four tools write request records.
+- **Five transfer request tools** prepare wallet transfers, bank transfers, and vault deposits, read request status, and cancel pending requests. See [transfer permissions](#transfer-permissions). Status is read-only; the other four tools write request records. Cancelling a request is destructive and cannot be undone.
 - **One feedback tool**, `betteroff_submit_feedback`, sends diagnostic reports you approve. It requires separate, opt-in `feedback:submit` permission. Reports must exclude financial records, conversation history, tool payloads, and credentials.
 
-The full catalog contains 21 read-only tools and eight tools that write pending records or feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
+The full catalog contains 23 read-only tools and eight tools that write pending records or feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
 
 ### Result quality
 
@@ -37,9 +37,9 @@ The server defines five transfer request tools. Each needs separate opt-in permi
 
 | Tool | Required scopes | Purpose |
 | --- | --- | --- |
-| `betteroff_request_transfer` | `accounts:read`, `transfers:prepare` | Prepare a USDC transfer between household wallets on Solana or Base |
+| `betteroff_request_transfer` | `accounts:read`, `transfers:prepare` | Prepare a USDC transfer between household wallets on Solana. Base transfers are paused |
 | `betteroff_request_bank_transfer` | `accounts:read`, `transfers:bank` | Prepare a bank transfer through Natural between the user's own linked accounts |
-| `betteroff_request_vault_deposit` | `investments:read`, `transfers:vault` | Prepare a USDC or USDT deposit into a supported Investing vault |
+| `betteroff_request_vault_deposit` | `investments:read`, `transfers:vault` | Prepare a USDC, USDT, or pathUSD deposit into a supported Investing vault |
 | `betteroff_get_action_request` | `transfers:read` | Read request status |
 | `betteroff_cancel_action_request` | `transfers:prepare` | Cancel a pending request |
 
