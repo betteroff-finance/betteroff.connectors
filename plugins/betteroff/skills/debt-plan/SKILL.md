@@ -33,7 +33,7 @@ The user's explicit instructions take priority over this skill. When the `househ
 ## Read
 
 1. Call `betteroff_list_debts`. Report `totalDebt` or, when it is null, `knownDebtSubtotal` with `unknownBalanceCount`. List each debt by `displayName` with balance, APR, and minimum payment.
-2. Call `betteroff_simulate_debt_payoff` with `strategy: "avalanche"` and `extraMonthly: 0`, then with `strategy: "snowball"`. When the user names an extra monthly amount, run both strategies with it as well.
+2. Call `betteroff_simulate_debt_payoff` with `strategy: "avalanche"` and `extraMonthly: 0`. The result includes `comparison`, the snowball run with the same inputs. When the user names an extra monthly amount, call it again with that amount.
 
 ## Fill missing terms
 
@@ -48,6 +48,6 @@ When the simulation refuses with `missingInputs`:
 
 Show a table with one row per scenario: strategy, extra monthly payment, months to debt-free (`totalMonths`), total interest, and the first debt paid off. When `feasible` is false, say that the payments do not cover the interest and do not report a payoff date.
 
-Avalanche minimizes interest; snowball clears small balances first. State the interest difference between them. Treat results as arithmetic under fixed rates and payments, not a forecast.
+Avalanche minimizes interest; snowball clears small balances first. State the interest difference from `comparison.interestSavedVsOther`; do not subtract the totals yourself. Treat results as arithmetic under fixed rates and payments, not a forecast.
 
 The tools cannot pay bills or move bank funds. Do not recommend new borrowing, consolidation, or a specific lender.
