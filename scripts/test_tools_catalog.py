@@ -93,5 +93,20 @@ class ToolCatalogTests(unittest.TestCase):
         self.assertIn('31 tools: 23 read tools and 8 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
 
 
+    def test_live_skill_input_drift_fails(self):
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        tools = {t['name']: t for t in catalog['tools']}
+        schema = {'properties': {'groupBy': {'type': 'string', 'enum': ['category']}}}
+        paths = {f'/v1/tools/{name}': {'post': {
+            'operationId': name, 'summary': t['title'],
+            'x-mcp-annotations': {'readOnlyHint': t['readOnly']},
+            'security': [{'agentOAuth': t['scopes']}],
+            'requestBody': {'content': {'application/json': {'schema': schema}}}}} for name, t in tools.items()}
+        spec = {'info': {'version': catalog['serverVersion']}, 'paths': paths}
+        (self.root / 'spec.json').write_text(json.dumps(spec))
+        errors = '\n'.join(check_live(self.root, (self.root / 'spec.json').as_uri()))
+        self.assertIn('betteroff_analyze_spending input groupBy does not accept "merchant"', errors)
+        self.assertIn('betteroff_get_portfolio has no input includePositions', errors)
+
 if __name__ == '__main__':
     unittest.main()

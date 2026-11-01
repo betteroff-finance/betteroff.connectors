@@ -3,7 +3,8 @@
 Usage: python3 scripts/tools_catalog.py [--check] [--live]
   (no flag)  rewrite docs/tools.md
   --check    fail if docs/tools.md is stale or any skill or document disagrees with tools.json
-  --live     fail if the public OpenAPI tool operations disagree with tools.json (needs network)
+  --live     fail if the public OpenAPI tool operations disagree with tools.json, or a skill passes
+             an input name or enum value a tool does not accept (needs network)
 """
 import argparse
 import json
@@ -13,6 +14,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOL = re.compile(r'betteroff_[a-z][a-z_]*')
+# A skill step such as: Call `betteroff_analyze_spending` with `groupBy: "merchant"`.
+CALL = re.compile(r'`(betteroff_[a-z_]+)`[^`]*((?:`[^`]+`[^`]*)+)')
+INPUT = re.compile(r'`([A-Za-z]+): ("[^"]*"|true|false|\d+)`')
 
 
 def load(root):
@@ -100,6 +104,27 @@ def check_live(root, url=None):
         scopes = {s for requirement in operation.get('security', []) for s in requirement.get('agentOAuth', [])}
         if scopes != set(tool['scopes']):
             errors.append(f"{name}: scopes {sorted(tool['scopes'])} != API {sorted(scopes)}")
+    errors += check_skill_inputs(root, live)
+    return errors
+
+
+def check_skill_inputs(root, live):
+    """Inputs a skill writes next to a tool name must exist on that tool, and match its enum."""
+    errors = []
+    for path in sorted({*root.glob('skills/**/SKILL.md'), *root.glob('plugins/betteroff/skills/**/SKILL.md')}):
+        for line in path.read_text().splitlines():
+            for name, rest in CALL.findall(line):
+                properties = (live.get(name, {}).get('requestBody', {}).get('content', {})
+                              .get('application/json', {}).get('schema', {}).get('properties'))
+                if properties is None:
+                    continue
+                for key, value in INPUT.findall(rest):
+                    where = f'{path.relative_to(root)}: {name}'
+                    if key not in properties:
+                        errors.append(f'{where} has no input {key}')
+                    elif value.startswith('"') and 'enum' in properties[key] \
+                            and value.strip('"') not in properties[key]['enum']:
+                        errors.append(f'{where} input {key} does not accept {value}')
     return errors
 
 

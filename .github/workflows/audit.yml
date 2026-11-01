@@ -66,6 +66,20 @@ jobs:
       - run: claude plugin validate --strict .
       - run: claude plugin validate --strict plugins/betteroff
 
+  catalog:
+    # A tool, input, or enum renamed on the server must fail the PR that changes the skills or
+    # tools.json here, not wait for the schedule. One read of the public OpenAPI document.
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 scripts/tools_catalog.py --live
+
   server:
     # Live endpoint checks run on the schedule so a server outage does not block pull requests.
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
