@@ -2,9 +2,9 @@
 
 # BetterOff MCP directory guide
 
-[All clients](../../README.md#install-the-connector) · [Contributing](../../CONTRIBUTING.md) · [Dated evidence](evidence-2026-10-13.md) · [ChatGPT approval](evidence-2026-10-22.md) · [Zapier private preview](../zapier/README.md)
+[All clients](../../README.md#install-the-connector) · [Contributing](../../CONTRIBUTING.md) · [Zapier private preview](../zapier/README.md)
 
-This guide owns directory status, submission fields, and the acceptance procedure. Dated test logs, request IDs, and the Glama investigation are in the [October 13, 2026 evidence record](evidence-2026-10-13.md), beside the JSON results in this folder. A directory listing publishes metadata; it never grants access to a household.
+This guide owns directory status, submission fields, and the acceptance procedure. Dated test logs and request IDs are kept in maintainers' private records. A directory listing publishes metadata; it never grants access to a household.
 
 ## Status
 
@@ -20,7 +20,7 @@ Recorded October 13, 2026; the ChatGPT row was updated October 22, 2026. Do not 
 | [Glama](#glama) | Not submitted; OAuth callback fails in Glama's inspector | Glama fixes its popup handoff |
 | [PulseMCP](#pulsemcp) | Not listed; manual submissions paused | Check for Registry ingestion when PulseMCP resumes |
 
-The independent production lifecycle test passed: scoped sign-in, discovery, reads, refresh, and denial after disconnection. It verifies server behavior, not any destination's client. See [production lifecycle results](production-lifecycle-2026-10-13.json).
+The independent production lifecycle test passed: scoped sign-in, discovery, reads, refresh, and denial after disconnection. It verifies server behavior, not any destination's client.
 
 ## ChatGPT and Claude connector directories
 
@@ -33,7 +33,7 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 
 Claude Code plugin tests do not verify this destination. Source: [Submit a connector to the directory](https://claude.com/docs/connectors/building/submission), reviewed October 13, 2026.
 
-**ChatGPT.** Build the restricted package with the [ChatGPT submission procedure](../../CONTRIBUTING.md#chatgpt-submission-package). A generated ZIP is not an approved listing. OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026; it is not published yet, and no authenticated ChatGPT test is recorded. See the [approval record](evidence-2026-10-22.md).
+**ChatGPT.** Build the restricted package with the [ChatGPT submission procedure](../../CONTRIBUTING.md#chatgpt-submission-package). A generated ZIP is not an approved listing. OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026; it is not published yet, and no authenticated ChatGPT test is recorded.
 
 The same `readOnlyHint` annotations drive Hermes Agent's approval prompt for `trust: untrusted` servers and Zapier's **Read-Only** label.
 
@@ -104,7 +104,7 @@ Keep reviewer credentials outside this public repository. The recorded Glama tes
 
 ## Official MCP Registry
 
-**Published** as `finance.betteroff/mcp` on October 13, 2026. Version 0.5.2, which changes only the description, was published October 29, 2026 at 08:14:01 UTC through the Registry API with DNS login, and a public GET confirmed it as latest. The latest Registry record should match [server.json](server.json); the Registry needs a new version for every change, including metadata-only updates. DNS ownership of `betteroff.finance` is verified; the signing key stays in ignored local storage. See [publication evidence](registry-publication-2026-10-13.json) and the [publication record](evidence-2026-10-13.md#official-mcp-registry-publication).
+**Published** as `finance.betteroff/mcp` on October 13, 2026. Version 0.5.2, which changes only the description, was published October 29, 2026 at 08:14:01 UTC through the Registry API with DNS login, and a public GET confirmed it as latest. The latest Registry record should match [server.json](server.json); the Registry needs a new version for every change, including metadata-only updates. DNS ownership of `betteroff.finance` is verified; the signing key stays in ignored local storage.
 
 The older `finance.betteroff/public` 1.0.0 record points to a retired anonymous endpoint. It was marked deprecated on October 29, 2026. Do not use it for setup.
 
@@ -120,11 +120,11 @@ The repository field is omitted because this repository distributes client confi
 | Owner namespace | Dedicated test-account namespace `b432acfe`; verified vendor ownership is not established |
 | Hosting | Existing BetterOff hosting at `https://api.betteroff.finance/mcp` |
 
-Smithery scans tools after authentication and proxies upstream traffic. Use only a synthetic household for scans. The optional static server card at `/.well-known/mcp/server-card.json` returns 401; do not weaken endpoint authentication to make a scan pass. See the [Smithery record](evidence-2026-10-13.md#smithery-publication) and [Smithery publishing requirements](https://smithery.ai/docs/build/publish).
+Smithery scans tools after authentication and proxies upstream traffic. Use only a synthetic household for scans. The optional static server card at `/.well-known/mcp/server-card.json` returns 401; do not weaken endpoint authentication to make a scan pass. See [Smithery publishing requirements](https://smithery.ai/docs/build/publish).
 
 ## Glama
 
-**Not submitted.** Glama's inspector reaches BetterOff consent, but its callback cannot hand the authorization code back: Glama relies on the popup's opener, which BetterOff's `Cross-Origin-Opener-Policy` isolates. The recommended fix is a same-origin callback channel in Glama's client. BetterOff's opener isolation stays in place. See the [Glama investigation](evidence-2026-10-13.md#glama-connection-attempt).
+**Not submitted.** Glama's inspector reaches BetterOff consent, but its callback cannot hand the authorization code back: Glama relies on the popup's opener, which BetterOff's `Cross-Origin-Opener-Policy` isolates. The recommended fix is a same-origin callback channel in Glama's client. BetterOff's opener isolation stays in place.
 
 Use **Connector** on [Glama's connectors page](https://glama.ai/mcp/connectors). Glama publishes healthy connectors immediately, so treat **Add MCP Server → Connector** as publishing.
 
@@ -152,7 +152,7 @@ Use [shared listing copy](#shared-listing-copy) for the full description, polici
 
 ## Listing attribution update — October 13, 2026
 
-Registry metadata version 0.5.1 adds the consent-aware website tracking link. The hosted server remains version 0.5.0; its MCP endpoint and OAuth identifiers are unchanged. The Registry requires a new version for metadata changes. A public latest-version read confirmed the new record is active and latest. See [Registry tracking publication](registry-tracking-publication-2026-10-13.json). The separate `finance.betteroff/public` entry was not changed.
+Registry metadata version 0.5.1 adds the consent-aware website tracking link. The hosted server remains version 0.5.0; its MCP endpoint and OAuth identifiers are unchanged. The Registry requires a new version for metadata changes. A public latest-version read confirmed the new record is active and latest. The separate `finance.betteroff/public` entry was not changed.
 
 Smithery's homepage field was updated through its documented metadata API. Its rendered public Homepage link contains `utm_source=smithery`, `utm_medium=directory`, and `utm_campaign=mcp-listing`. Both website destinations returned HTTP 200 while preserving those parameters. No connection, release scan, or household grant was created.
 

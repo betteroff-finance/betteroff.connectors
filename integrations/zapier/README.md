@@ -4,7 +4,7 @@
 
 [Directory listings](../../README.md#directory-listings) · [Connector reference](../../docs/connector.md) · [Directory guide](../directories/README.md)
 
-**Private preview — not submitted for public listing.** Integration `247763`, version `1.0.0`, has two read actions. API-token authentication, both actions, and token revocation passed with a synthetic household on October 13, 2026. Zapier's publishing requirements remain open; see [listing materials and remaining work](#listing-materials-and-remaining-work). The [dated evidence record](evidence-2026-10-13.md) has Zap IDs, run links, request IDs, and the disconnect fix.
+**Private preview — not submitted for public listing.** Integration `247763`, version `1.0.0`, has two read actions. API-token authentication, both actions, and token revocation passed with a synthetic household on October 13, 2026. Zapier's publishing requirements remain open; see [listing materials and remaining work](#listing-materials-and-remaining-work).
 
 Open the integration from **My integrations** in the [Zapier Developer Platform](https://developer.zapier.com/) while signed in as its Admin account.
 
