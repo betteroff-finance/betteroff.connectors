@@ -38,7 +38,7 @@ Use the next 14 days from today, unless the user names a number of days or an en
 
 These reads are independent, so make them together when the client allows:
 
-- `betteroff_list_recurring`. Do not infer recurrence from merchant frequency alone.
+- `betteroff_list_recurring` with `coverageDays` set to the window length. Do not infer recurrence from merchant frequency alone.
 - `betteroff_list_accounts`, for current balances of cash accounts and their balance dates.
 - `betteroff_get_cash_flow` for the last complete month, for typical monthly income and expenses.
 
@@ -52,7 +52,9 @@ Include active outgoing items whose `nextDate` falls in the window. List each wi
 
 ## Compare with balances
 
-Add the due amounts only when they share one currency. Compare the total with the current balances of checking and savings accounts in the same currency. Give each balance date, and say when a balance is stale. Do not count credit lines, investments, or wallets as cash unless the user asks.
+Quote `coverage.byCurrency` from `betteroff_list_recurring`: `dueTotal`, `bankCash`, and `remaining` for each currency. Do not add amounts yourself. It counts repeats inside the window and uses bank (checking and savings) balances only. Report `unknownCharges` and `unknownBalances` when they are not zero. If `coverage` is missing because the tool predates it, add due amounts that share one currency and compare them with checking and savings balances from `betteroff_list_accounts`.
+
+Give each balance date from `betteroff_list_accounts`, and say when a balance is stale. Do not count credit lines, investments, or wallets as cash unless the user asks.
 
 State the result as arithmetic: due total, cash total, and the difference. When the cash total does not cover the due total, say so plainly with the shortfall. Expected income in the window may change the result; name it and its date rather than netting it in.
 
