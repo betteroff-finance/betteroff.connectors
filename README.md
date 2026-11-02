@@ -104,7 +104,7 @@ This repository contains no telemetry code. The connector sends nothing from you
 
 ## Directory listings
 
-BetterOff is published in the [official MCP Registry](integrations/directories/README.md#official-mcp-registry) as `finance.betteroff/mcp` and on [Smithery](integrations/directories/README.md#smithery). OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026; it is not published there yet. It is not listed in the Claude connector directory, Glama, or PulseMCP. A [Zapier integration](integrations/zapier/README.md) is in private preview. The [directory guide](integrations/directories/README.md) tracks each submission.
+BetterOff is published in the [official MCP Registry](integrations/directories/README.md#official-mcp-registry) as `finance.betteroff/mcp` and on [Smithery](integrations/directories/README.md#smithery). It is listed publicly in the ChatGPT directory; version 0.5.2 was published there November 2, 2026. It is not listed in the Claude connector directory, Glama, or PulseMCP. A [Zapier integration](integrations/zapier/README.md) is in private preview. The [directory guide](integrations/directories/README.md) tracks each submission.
 
 ## Security and support
 

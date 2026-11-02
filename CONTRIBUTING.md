@@ -107,7 +107,7 @@ Update plugin versions in finance and sync them here before updating `tools.json
 
 ## ChatGPT submission package
 
-**Approved October 22, 2026 as portal version 1.0.0; not published.** A generated ZIP is not an approved directory integration.
+**Approved October 22, 2026; version 0.5.2 published and listed publicly November 2, 2026.** A generated ZIP is not an approved directory integration.
 
 Generate the ChatGPT ZIP separately from the shared client plugin:
 
