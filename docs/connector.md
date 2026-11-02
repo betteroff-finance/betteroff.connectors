@@ -90,4 +90,4 @@ The consent page identifies the client, household, permissions, and access durat
 - If a read fails, check `code` and `retryable`. Retry once if `retryable` is true. Otherwise, address the reported error before retrying. Do not treat a failed read as an empty result.
 - If records are missing or stale, preserve `quality.reasons` and warnings. Use `betteroff_get_setup_status` when available and follow its returned BetterOff links.
 
-Not every 0.5.0 tool has passed a live production test. Each client guide records its own test limits. Installing this repository does not list BetterOff in the ChatGPT or Claude connector directories. BetterOff is approved for the ChatGPT directory but not yet published; see the [directory guide](../integrations/directories/README.md).
+Not every 0.5.0 tool has passed a live production test. Each client guide records its own test limits. Installing this repository does not list BetterOff in the ChatGPT or Claude connector directories. BetterOff is listed publicly in the ChatGPT directory; see the [directory guide](../integrations/directories/README.md).
