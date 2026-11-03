@@ -29,7 +29,6 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Observed recurring payments | `betteroff_list_recurring` |
 | Portfolio positions, allocation and concentration | `betteroff_get_portfolio` |
 | DeFi assets and liabilities | `betteroff_get_defi_positions` |
-| Search prediction markets | `betteroff_search_markets` |
 | Reported vault yields | `betteroff_get_vault_yields` |
 | Financial checklist progress | `betteroff_get_checklist` |
 | Household deadlines and renewals | `betteroff_list_deadlines` |
