@@ -15,7 +15,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.root = Path(directory.name)
         for name in ('plugins', 'skills', 'docs', 'integrations'):
             shutil.copytree(ROOT / name, self.root / name)
-        for name in ('README.md', 'AGENTS.md', 'tools.json'):
+        for name in ('README.md', 'tools.json'):
             shutil.copyfile(ROOT / name, self.root / name)
 
     def test_repository_passes(self):
