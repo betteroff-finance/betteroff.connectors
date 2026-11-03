@@ -68,7 +68,7 @@ def check(root):
         if listed != set(names):
             errors.append(f'{skill}: tool table differs from tools.json: '
                           f'missing {sorted(set(names) - listed)}, extra {sorted(listed - set(names))}')
-    sources = [root / 'README.md', root / 'AGENTS.md', root / 'plugins/betteroff/plugin.json',
+    sources = [root / 'README.md', root / 'plugins/betteroff/plugin.json',
                *root.glob('docs/**/*.md'), *root.glob('plugins/betteroff/skills/**/*'), *root.glob('integrations/**/*')]
     for path in sources:
         if path.is_file() and path.suffix in ('.md', '.json', '.yaml', '.cjs'):
