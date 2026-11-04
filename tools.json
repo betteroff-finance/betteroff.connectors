@@ -19,7 +19,6 @@
     {"name": "betteroff_get_portfolio", "title": "Get portfolio", "scopes": ["investments:read"], "readOnly": true, "summary": "Investment positions, allocation, and concentration."},
     {"name": "betteroff_get_defi_positions", "title": "Get defi positions", "scopes": ["investments:read"], "readOnly": true, "summary": "DeFi lending, staking, and liquidity positions with assets and liabilities."},
     {"name": "betteroff_get_vault_yields", "title": "Get vault yields", "scopes": ["investments:read"], "readOnly": true, "summary": "Reported APY of vaults available in Investing; not recommendations."},
-    {"name": "betteroff_search_markets", "title": "Search markets", "scopes": ["investments:read"], "readOnly": true, "summary": "Public FX rates, Hyperliquid spot and perpetual markets, and prediction markets."},
     {"name": "betteroff_list_debts", "title": "List debts", "scopes": ["debts:read"], "readOnly": true, "summary": "Debt balances, terms, and missing terms."},
     {"name": "betteroff_simulate_debt_payoff", "title": "Simulate debt payoff", "scopes": ["debts:read"], "readOnly": true, "summary": "Arithmetic payoff scenarios; refuses when terms are missing."},
     {"name": "betteroff_get_checklist", "title": "Get checklist", "scopes": ["checklist:read"], "readOnly": true, "summary": "Financial checklist progress, such as insurance, estate documents, and emergency fund."},
