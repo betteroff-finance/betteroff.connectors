@@ -29,7 +29,7 @@
 
 Connect your AI client to [BetterOff](https://betteroff.finance/github) to review household finances, find recurring charges, and prepare corrections for your approval.
 
-**38 tools · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
+**37 tools · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
 
 [Quickstart](#quickstart) · [All clients](#install-the-connector) · [Tool reference](docs/tools.md) · [Connector reference](docs/connector.md) · [Security](SECURITY.md)
 

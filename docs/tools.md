@@ -5,7 +5,7 @@
 
 [All clients](../README.md#install-the-connector) · [Connector reference](connector.md)
 
-Connector package 0.6.0 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 38 tools: 28 read tools and 10 write tools. A client sees only the tools its granted scopes allow.
+Connector package 0.6.0 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 37 tools: 27 read tools and 10 write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction or transfer request, cancel a pending request, or send feedback. None can apply a correction, approve a transfer, or sign a transaction. You do those in BetterOff. Cancellation and feedback take effect when called.
