@@ -36,7 +36,7 @@ Connect your AI client to [BetterOff](https://betteroff.finance/github) to revie
 ## Before you start
 
 - **Account:** You need a BetterOff household owner account and a client listed below. To ask about your finances, first connect a supported financial account or wallet in BetterOff.
-- **Plan:** Tools work on every plan, including Free, over MCP or REST. Some tools need BetterOff Member and return `CORE_REQUIRED` on Free. Insurance needs BetterOff Office, which is in early access.
+- **Plan:** Tools work on every plan, including Free, over MCP or REST. Some tools need the Better plan and return `CORE_REQUIRED` on Free. Insurance needs BetterOff Office, which is in early access.
 - **Consent:** Every household member must turn on **Chat data access** in BetterOff settings, and you must accept the applicable BetterOff Terms. Your connected client receives the data that each tool returns.
 - **Approval:** The connector prepares corrections for your review. If you grant the transfer scopes, it can also request wallet transfers, bank transfers between your own linked accounts, and vault deposits. You review each request in BetterOff. Wallet transfers and vault deposits require your wallet signature; bank transfers require passkey confirmation. The connector cannot apply a correction or approve or execute a request.
 
