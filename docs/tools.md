@@ -5,11 +5,11 @@
 
 [All clients](../README.md#install-the-connector) · [Connector reference](connector.md)
 
-Connector package 0.6.0 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 38 tools: 28 read tools and 10 write tools. A client sees only the tools its granted scopes allow.
+Connector package 0.6.0 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 37 tools: 27 read tools and 10 write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction or transfer request, cancel a pending request, or send feedback. None can apply a correction, approve a transfer, or sign a transaction. You do those in BetterOff. Cancellation and feedback take effect when called.
-- Tools work on every plan, including Free, over MCP or REST. Member-only tools return `CORE_REQUIRED` on Free. Insurance needs Office, which is in early access.
+- Tools work on every plan, including Free, over MCP or REST. Better-only tools return `CORE_REQUIRED` on Free. Insurance needs Office, which is in early access.
 
 The same catalog is available as [tools.json](../tools.json). With an API token, call any tool at `POST https://api.betteroff.finance/v1/tools/{name}`; see the [developer documentation](https://betteroff.finance/developers) and the [tool OpenAPI document](https://api.betteroff.finance/openapi/tools.json).
 
@@ -30,7 +30,6 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_get_portfolio` | Read | `investments:read` | Investment positions, allocation, and concentration. |
 | `betteroff_get_defi_positions` | Read | `investments:read` | DeFi lending, staking, and liquidity positions with assets and liabilities. |
 | `betteroff_get_vault_yields` | Read | `investments:read` | Reported APY of vaults available in Investing; not recommendations. |
-| `betteroff_search_markets` | Read | `investments:read` | Public FX rates, Hyperliquid spot and perpetual markets, and prediction markets. |
 | `betteroff_list_debts` | Read | `debts:read` | Debt balances, terms, and missing terms. |
 | `betteroff_simulate_debt_payoff` | Read | `debts:read` | Arithmetic payoff scenarios; refuses when terms are missing. |
 | `betteroff_get_checklist` | Read | `checklist:read` | Financial checklist progress, such as insurance, estate documents, and emergency fund. |
