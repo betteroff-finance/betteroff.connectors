@@ -1,6 +1,6 @@
 {
   "server": "https://api.betteroff.finance/mcp",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "serverVersion": "0.5.0",
   "openapi": "https://api.betteroff.finance/openapi/tools.json",
   "tools": [
