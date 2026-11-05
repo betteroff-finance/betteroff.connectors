@@ -8,6 +8,19 @@ from pathlib import Path
 from tools_catalog import ROOT, check, check_live, render
 
 
+def live_operation(tool):
+    return {'operationId': tool['name'], 'summary': tool['title'], 'description': tool.get('description'),
+            'security': [{'agentOAuth': tool['scopes']}],
+            'x-mcp-annotations': {'readOnlyHint': tool['readOnly'],
+                                  'destructiveHint': tool.get('destructive', False)}}
+
+
+def live_spec(catalog):
+    return {'info': {'version': catalog['serverVersion']}, 'paths': {
+        f"/v1/tools/{tool['name']}": {'post': live_operation(tool)}
+        for tool in catalog['tools'] if not tool.get('unavailable')}}
+
+
 class ToolCatalogTests(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
@@ -25,13 +38,10 @@ class ToolCatalogTests(unittest.TestCase):
 
     def test_live_check_expects_no_unavailable_tool(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
-        tools = [t for t in catalog['tools'] if not t.get('unavailable')]
-        spec = {'info': {'version': catalog['serverVersion']}, 'paths': {
-            f"/v1/tools/{t['name']}": {'post': {
-                'operationId': t['name'], 'summary': t['title'],
-                'x-mcp-annotations': {'readOnlyHint': t['readOnly']},
-                'security': [{'agentOAuth': [s]} for s in t['scopes']],
-            }} for t in tools}}
+        spec = live_spec(catalog)
+        for t in catalog['tools']:
+            if not t.get('unavailable'):
+                spec['paths'][f"/v1/tools/{t['name']}"]['post']['security'] = [{'agentOAuth': [s]} for s in t['scopes']]
         path = self.root / 'spec.json'
         path.write_text(json.dumps(spec))
         self.assertEqual(check_live(self.root, path.as_uri()), [])
@@ -66,12 +76,7 @@ class ToolCatalogTests(unittest.TestCase):
 
     def test_live_annotations_and_catalog_url(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
-        spec = {'info': {'version': catalog['serverVersion']}, 'paths': {
-            f"/v1/tools/{tool['name']}": {'post': {
-                'operationId': tool['name'], 'summary': tool['title'],
-                'security': [{'agentOAuth': tool['scopes']}],
-                'x-mcp-annotations': {'readOnlyHint': tool['readOnly']},
-            }} for tool in catalog['tools'] if not tool.get('unavailable')}}
+        spec = live_spec(catalog)
         target = self.root / 'spec.json'
         catalog['openapi'] = target.as_uri()
         (self.root / 'tools.json').write_text(json.dumps(catalog))
@@ -82,12 +87,59 @@ class ToolCatalogTests(unittest.TestCase):
             operation = spec['paths'][f"/v1/tools/{tool['name']}"]['post']
             for annotation in ({'readOnlyHint': not read_only}, {}, {'readOnlyHint': int(read_only)}):
                 with self.subTest(read_only=read_only, annotation=annotation):
-                    operation['x-mcp-annotations'] = annotation
+                    operation['x-mcp-annotations'] = {'destructiveHint': tool.get('destructive', False), **annotation}
                     target.write_text(json.dumps(spec))
                     errors = check_live(self.root)
                     self.assertEqual(len(errors), 1)
                     self.assertIn(f"{tool['name']}: readOnly", errors[0])
-            operation['x-mcp-annotations'] = {'readOnlyHint': read_only}
+            operation['x-mcp-annotations'] = {'readOnlyHint': read_only,
+                                              'destructiveHint': tool.get('destructive', False)}
+
+    def test_only_cancel_action_request_is_destructive(self):
+        tools = json.loads((ROOT / 'tools.json').read_text())['tools']
+        self.assertEqual([t['name'] for t in tools if t.get('destructive')], ['betteroff_cancel_action_request'])
+
+    def test_live_description_drift_fails(self):
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        first, second = catalog['tools'][:2]
+        spec = live_spec(catalog)
+        spec['paths'][f"/v1/tools/{first['name']}"]['post']['description'] = 'Changed on the server.'
+        del second['description']
+        (self.root / 'tools.json').write_text(json.dumps(catalog))
+        (self.root / 'spec.json').write_text(json.dumps(spec))
+        self.assertEqual(check_live(self.root, (self.root / 'spec.json').as_uri()), sorted(
+            f"{tool['name']}: description differs from the API" for tool in (first, second)))
+
+    def test_live_destructive_drift_fails(self):
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        cancel = next(t for t in catalog['tools'] if t.get('destructive'))
+        other = next(t for t in catalog['tools'] if not t.get('destructive') and not t.get('unavailable'))
+        for tool, hint in ((cancel, False), (other, True), (cancel, None), (other, None)):
+            with self.subTest(tool=tool['name'], hint=hint):
+                spec = live_spec(catalog)
+                annotations = spec['paths'][f"/v1/tools/{tool['name']}"]['post']['x-mcp-annotations']
+                annotations.pop('destructiveHint')
+                if hint is not None:
+                    annotations['destructiveHint'] = hint
+                (self.root / 'spec.json').write_text(json.dumps(spec))
+                errors = check_live(self.root, (self.root / 'spec.json').as_uri())
+                self.assertEqual(len(errors), 1)
+                self.assertIn(f"{tool['name']}: destructive", errors[0])
+
+    def test_live_count_drift_fails(self):
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        spec = live_spec(catalog)
+        extra = live_operation(catalog['tools'][0])
+        spec['paths']['/v1/tools/duplicate'] = {'post': extra}
+        (self.root / 'spec.json').write_text(json.dumps(spec))
+        self.assertEqual(check_live(self.root, (self.root / 'spec.json').as_uri()),
+                         ['count: API lists 37 tools, tools.json lists 36 available'])
+        del spec['paths']['/v1/tools/duplicate']
+        spec['paths']['/v1/tools/betteroff_new_tool'] = {'post': {'operationId': 'betteroff_new_tool'}}
+        (self.root / 'spec.json').write_text(json.dumps(spec))
+        errors = check_live(self.root, (self.root / 'spec.json').as_uri())
+        self.assertEqual(errors, ['count: API lists 37 tools, tools.json lists 36 available',
+                                  'betteroff_new_tool: missing from tools.json'])
 
     def test_live_version_tracks_server_independently_of_package(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
@@ -116,9 +168,7 @@ class ToolCatalogTests(unittest.TestCase):
         tools = {t['name']: t for t in catalog['tools']}
         schema = {'properties': {'groupBy': {'type': 'string', 'enum': ['category']}}}
         paths = {f'/v1/tools/{name}': {'post': {
-            'operationId': name, 'summary': t['title'],
-            'x-mcp-annotations': {'readOnlyHint': t['readOnly']},
-            'security': [{'agentOAuth': t['scopes']}],
+            **live_operation(t),
             'requestBody': {'content': {'application/json': {'schema': schema}}}}} for name, t in tools.items()}
         spec = {'info': {'version': catalog['serverVersion']}, 'paths': paths}
         (self.root / 'spec.json').write_text(json.dumps(spec))
