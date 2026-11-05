@@ -35,11 +35,11 @@
     {"name": "betteroff_propose_allocation_targets", "title": "Propose allocation targets", "scopes": ["investments:read", "corrections:prepare"], "readOnly": false, "summary": "Saves user-stated target allocation for approval in BetterOff."},
     {"name": "betteroff_propose_budget", "title": "Propose budget", "scopes": ["transactions:read", "corrections:prepare"], "readOnly": false, "summary": "Saves a user-stated category budget for approval in BetterOff."},
     {"name": "betteroff_request_transfer", "title": "Request transfer", "scopes": ["accounts:read", "transfers:prepare"], "readOnly": false, "summary": "Requests a USDC transfer between the household's own wallets; the user signs in BetterOff."},
-    {"name": "betteroff_request_bank_transfer", "title": "Request bank transfer", "scopes": ["accounts:read", "transfers:bank"], "readOnly": false, "summary": "Requests a transfer between the user's own linked accounts; the user confirms with a passkey."},
+    {"name": "betteroff_request_bank_transfer", "title": "Request bank transfer", "scopes": ["accounts:read", "transfers:bank"], "readOnly": false, "unavailable": true, "summary": "Requests a transfer between the user's own linked accounts; the user confirms with a passkey."},
     {"name": "betteroff_request_vault_deposit", "title": "Request vault deposit", "scopes": ["investments:read", "transfers:vault"], "readOnly": false, "summary": "Requests a USDC or USDT vault deposit; the user signs in BetterOff."},
     {"name": "betteroff_get_action_request", "title": "Get action request", "scopes": ["transfers:read"], "readOnly": true, "summary": "Status of a transfer or deposit request."},
     {"name": "betteroff_get_money_activity", "title": "Get money activity", "scopes": ["accounts:read", "transactions:read"], "readOnly": true, "summary": "Natural wallet balances and the status of payments, requests, and transfers."},
-    {"name": "betteroff_cancel_action_request", "title": "Cancel action request", "scopes": ["transfers:prepare"], "readOnly": false, "summary": "Cancels a pending request before it is signed."},
+    {"name": "betteroff_cancel_action_request", "title": "Cancel action request", "scopes": ["transfers:prepare", "transfers:bank", "transfers:vault"], "anyScope": true, "readOnly": false, "summary": "Cancels a pending request before it is signed."},
     {"name": "betteroff_submit_feedback", "title": "Submit feedback", "scopes": ["feedback:submit"], "readOnly": false, "summary": "Sends a user-approved diagnostic report to BetterOff support."}
   ]
 }
