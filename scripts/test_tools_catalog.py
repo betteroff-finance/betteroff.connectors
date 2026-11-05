@@ -15,7 +15,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.root = Path(directory.name)
         for name in ('plugins', 'skills', 'docs', 'integrations'):
             shutil.copytree(ROOT / name, self.root / name)
-        for name in ('README.md', 'AGENTS.md', 'tools.json'):
+        for name in ('README.md', 'tools.json'):
             shutil.copyfile(ROOT / name, self.root / name)
 
     def test_repository_passes(self):
@@ -90,7 +90,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.assertIn(f'README.md must state "{count} tools"', check(self.root))
 
     def test_render_counts_tools(self):
-        self.assertIn('31 tools: 23 read tools and 8 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
+        self.assertIn('37 tools: 27 read tools and 10 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
 
 
     def test_live_skill_input_drift_fails(self):

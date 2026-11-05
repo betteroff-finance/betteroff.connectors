@@ -21,7 +21,7 @@ The user's explicit instructions take priority over this skill. When the `househ
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
   - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
-  - `CORE_REQUIRED`: this tool needs BetterOff Core; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
+  - `CORE_REQUIRED`: this tool needs the Better plan; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
   - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
   - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.

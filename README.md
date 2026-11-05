@@ -29,14 +29,14 @@
 
 Connect your AI client to [BetterOff](https://betteroff.finance/github) to review household finances, find recurring charges, and prepare corrections for your approval.
 
-**31 tools · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
+**37 tools · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
 
-[Quickstart](#quickstart) · [All clients](#install-the-connector) · [Tool reference](docs/tools.md) · [Connector reference](docs/connector.md) · [For agents](AGENTS.md) · [Security](SECURITY.md)
+[Quickstart](#quickstart) · [All clients](#install-the-connector) · [Tool reference](docs/tools.md) · [Connector reference](docs/connector.md) · [Security](SECURITY.md)
 
 ## Before you start
 
 - **Account:** You need a BetterOff household owner account and a client listed below. To ask about your finances, first connect a supported financial account or wallet in BetterOff.
-- **Plan:** You need BetterOff Core to call any tool, read or write, over MCP or REST. The Free plan and trials do not include tool access.
+- **Plan:** Tools work on every plan, including Free, over MCP or REST. Some tools need the Better plan and return `CORE_REQUIRED` on Free. Insurance needs BetterOff Office, which is in early access.
 - **Consent:** Every household member must turn on **Chat data access** in BetterOff settings, and you must accept the applicable BetterOff Terms. Your connected client receives the data that each tool returns.
 - **Approval:** The connector prepares corrections for your review. If you grant the transfer scopes, it can also request wallet transfers, bank transfers between your own linked accounts, and vault deposits. You review each request in BetterOff. Wallet transfers and vault deposits require your wallet signature; bank transfers require passkey confirmation. The connector cannot apply a correction or approve or execute a request.
 
@@ -104,7 +104,7 @@ This repository contains no telemetry code. The connector sends nothing from you
 
 ## Directory listings
 
-BetterOff is published in the [official MCP Registry](integrations/directories/README.md#official-mcp-registry) as `finance.betteroff/mcp` and on [Smithery](integrations/directories/README.md#smithery). OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026; it is not published there yet. It is not listed in the Claude connector directory, Glama, or PulseMCP. A [Zapier integration](integrations/zapier/README.md) is in private preview. The [directory guide](integrations/directories/README.md) tracks each submission.
+BetterOff is published in the [official MCP Registry](integrations/directories/README.md#official-mcp-registry) as `finance.betteroff/mcp` and on [Smithery](integrations/directories/README.md#smithery). It is listed publicly in the ChatGPT directory; version 0.5.2 was published there November 2, 2026. It is not listed in the Claude connector directory, Glama, or PulseMCP. A [Zapier integration](integrations/zapier/README.md) is in private preview. The [directory guide](integrations/directories/README.md) tracks each submission.
 
 ## Security and support
 

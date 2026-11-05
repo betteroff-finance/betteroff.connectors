@@ -5,11 +5,11 @@
 
 [All clients](../README.md#install-the-connector) · [Connector reference](connector.md)
 
-Connector package 0.6.0 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 31 tools: 23 read tools and 8 write tools. A client sees only the tools its granted scopes allow.
+Connector package 0.6.1 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 37 tools: 27 read tools and 10 write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction or transfer request, cancel a pending request, or send feedback. None can apply a correction, approve a transfer, or sign a transaction. You do those in BetterOff. Cancellation and feedback take effect when called.
-- Every tool requires BetterOff Core, over MCP or REST. The Free plan and trials do not include tool access.
+- Tools work on every plan, including Free, over MCP or REST. Better-only tools return `CORE_REQUIRED` on Free. Insurance needs Office, which is in early access.
 
 The same catalog is available as [tools.json](../tools.json). With an API token, call any tool at `POST https://api.betteroff.finance/v1/tools/{name}`; see the [developer documentation](https://betteroff.finance/developers) and the [tool OpenAPI document](https://api.betteroff.finance/openapi/tools.json).
 
@@ -30,15 +30,21 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_get_portfolio` | Read | `investments:read` | Investment positions, allocation, and concentration. |
 | `betteroff_get_defi_positions` | Read | `investments:read` | DeFi lending, staking, and liquidity positions with assets and liabilities. |
 | `betteroff_get_vault_yields` | Read | `investments:read` | Reported APY of vaults available in Investing; not recommendations. |
-| `betteroff_search_markets` | Read | `investments:read` | Public FX rates, Hyperliquid spot and perpetual markets, and prediction markets. |
 | `betteroff_list_debts` | Read | `debts:read` | Debt balances, terms, and missing terms. |
 | `betteroff_simulate_debt_payoff` | Read | `debts:read` | Arithmetic payoff scenarios; refuses when terms are missing. |
 | `betteroff_get_checklist` | Read | `checklist:read` | Financial checklist progress, such as insurance, estate documents, and emergency fund. |
+| `betteroff_list_deadlines` | Read | `checklist:read` | Recorded household deadlines, insurance renewals, and federal tax dates. |
+| `betteroff_list_insurance` | Read | `checklist:read` | Insurance policies the household recorded, with coverage, premium, and renewal date. |
+| `betteroff_get_budgets` | Read | `transactions:read`, `accounts:read` | Category budgets against this month's spending, and savings goal progress. |
+| `betteroff_estimate_quarterly_tax` | Read | `cashflow:read` | US federal safe-harbor estimated tax from figures the user states. |
+| `betteroff_get_giving_and_fees` | Read | `transactions:read` | Yearly charitable giving, personal gifts, bank fees, and investment fees. |
 | `betteroff_search_activity` | Read | `activity:read` | Recorded financial record changes and correction proposals. |
 | `betteroff_list_observations` | Read | `accounts:read`, `networth:read`, `transactions:read`, `cashflow:read`, `investments:read`, `debts:read` | Stored financial findings and their status. |
 | `betteroff_propose_category_change` | Write | `transactions:read`, `corrections:prepare` | Saves a pending category correction for approval in BetterOff. |
 | `betteroff_propose_recurring_kind` | Write | `cashflow:read`, `corrections:prepare` | Saves a pending bill-or-subscription classification for approval in BetterOff. |
 | `betteroff_propose_debt_details` | Write | `debts:read`, `corrections:prepare` | Saves user-stated debt terms for approval in BetterOff. |
+| `betteroff_propose_allocation_targets` | Write | `investments:read`, `corrections:prepare` | Saves user-stated target allocation for approval in BetterOff. |
+| `betteroff_propose_budget` | Write | `transactions:read`, `corrections:prepare` | Saves a user-stated category budget for approval in BetterOff. |
 | `betteroff_request_transfer` | Write | `accounts:read`, `transfers:prepare` | Requests a USDC transfer between the household's own wallets; the user signs in BetterOff. |
 | `betteroff_request_bank_transfer` | Write | `accounts:read`, `transfers:bank` | Requests a transfer between the user's own linked accounts; the user confirms with a passkey. |
 | `betteroff_request_vault_deposit` | Write | `investments:read`, `transfers:vault` | Requests a USDC or USDT vault deposit; the user signs in BetterOff. |
