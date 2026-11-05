@@ -18,6 +18,24 @@ class ToolCatalogTests(unittest.TestCase):
         for name in ('README.md', 'tools.json'):
             shutil.copyfile(ROOT / name, self.root / name)
 
+    def test_unavailable_and_any_scope_tools_render_honestly(self):
+        table = render(json.loads((self.root / 'tools.json').read_text()))
+        self.assertIn('`transfers:prepare` or `transfers:bank` or `transfers:vault`', table)
+        self.assertRegex(table, r'betteroff_request_bank_transfer.*Not available right now\.')
+
+    def test_live_check_expects_no_unavailable_tool(self):
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        tools = [t for t in catalog['tools'] if not t.get('unavailable')]
+        spec = {'info': {'version': catalog['serverVersion']}, 'paths': {
+            f"/v1/tools/{t['name']}": {'post': {
+                'operationId': t['name'], 'summary': t['title'],
+                'x-mcp-annotations': {'readOnlyHint': t['readOnly']},
+                'security': [{'agentOAuth': [s]} for s in t['scopes']],
+            }} for t in tools}}
+        path = self.root / 'spec.json'
+        path.write_text(json.dumps(spec))
+        self.assertEqual(check_live(self.root, path.as_uri()), [])
+
     def test_repository_passes(self):
         self.assertEqual(check(self.root), [])
 

@@ -28,7 +28,8 @@ def render(catalog):
     writes = sum(not t['readOnly'] for t in tools)
     rows = '\n'.join(
         f"| `{t['name']}` | {'Read' if t['readOnly'] else 'Write'} "
-        f"| {', '.join(f'`{s}`' for s in t['scopes'])} | {t['summary']} |"
+        f"| {(' or ' if t.get('anyScope') else ', ').join(f'`{s}`' for s in t['scopes'])} "
+        f"| {t['summary']}{' Not available right now.' if t.get('unavailable') else ''} |"
         for t in tools)
     return f"""<!-- Generated from tools.json by scripts/tools_catalog.py. Edit tools.json, then run the script. -->
 <picture><source media="(prefers-color-scheme: dark)" srcset="../assets/betteroff-mark-white.svg"><img src="../assets/betteroff-mark-graphite.svg" alt="" width="40" height="40"></picture>
@@ -91,7 +92,7 @@ def check_live(root, url=None):
     errors = []
     if not spec['info']['version'].split('+')[0] == catalog['serverVersion']:
         errors.append(f"version: API {spec['info']['version']} != tools.json serverVersion {catalog['serverVersion']}")
-    expected = {t['name']: t for t in catalog['tools']}
+    expected = {t['name']: t for t in catalog['tools'] if not t.get('unavailable')}
     for name in sorted(set(live) ^ set(expected)):
         errors.append(f"{name}: {'missing from tools.json' if name in live else 'missing from the API'}")
     for name in sorted(set(live) & set(expected)):
