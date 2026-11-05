@@ -41,7 +41,7 @@ The user's explicit instructions take priority over this skill. When the `househ
 Name one fix at a time, starting with the first blocking step:
 
 - `subscription`: Free includes a small Assistant allowance, and Better includes more. Report the returned access state; `action_needed` does not establish that a payment is due. For access problems, give the returned support link. Do not promote upgrades or direct the user to checkout.
-- `connect_accounts`: no supported account or wallet is connected yet.
+- `connect_accounts`: no supported account or wallet is connected yet. If the user gives a public wallet address and `betteroff_track_wallet` is available, add it. Never ask for a recovery phrase or private key. For a bank or manual item, share the matching link from `connectLinks`, with `bankNote` for banks. Only the user can finish Plaid.
 - `fix_connections`: a connection needs attention. `reauth_required` means reconnect the institution; `account_selection_required` means choose which accounts to share.
 
 For a missing account, ask which institution it belongs to. Do not guess whether BetterOff supports it.
