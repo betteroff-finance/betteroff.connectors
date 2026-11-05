@@ -29,7 +29,7 @@
 
 Connect your AI client to [BetterOff](https://betteroff.finance/github) to review household finances, find recurring charges, and prepare corrections for your approval.
 
-**37 tools · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
+**37 tools (bank transfers not available yet) · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
 
 [Quickstart](#quickstart) · [All clients](#install-the-connector) · [Tool reference](docs/tools.md) · [Connector reference](docs/connector.md) · [Security](SECURITY.md)
 
@@ -38,7 +38,7 @@ Connect your AI client to [BetterOff](https://betteroff.finance/github) to revie
 - **Account:** You need a BetterOff household owner account and a client listed below. To ask about your finances, first connect a supported financial account or wallet in BetterOff.
 - **Plan:** Tools work on every plan, including Free, over MCP or REST. Some tools need the Better plan and return `CORE_REQUIRED` on Free. Insurance needs BetterOff Office, which is in early access.
 - **Consent:** Every household member must turn on **Chat data access** in BetterOff settings, and you must accept the applicable BetterOff Terms. Your connected client receives the data that each tool returns.
-- **Approval:** The connector prepares corrections for your review. If you grant the transfer scopes, it can also request wallet transfers, bank transfers between your own linked accounts, and vault deposits. You review each request in BetterOff. Wallet transfers and vault deposits require your wallet signature; bank transfers require passkey confirmation. The connector cannot apply a correction or approve or execute a request.
+- **Approval:** The connector prepares corrections for your review. If you grant the transfer scopes, it can also request wallet transfers and vault deposits. You review each request in BetterOff, and each requires your wallet signature. Bank transfers are not available yet. The connector cannot apply a correction or approve or execute a request.
 
 The [tool reference](docs/tools.md) lists each tool and the scopes it requires.
 

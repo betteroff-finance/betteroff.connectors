@@ -54,7 +54,7 @@ Transfer request tools need a separate transfer permission:
 | Task | Tool |
 | --- | --- |
 | Request a USDC transfer between the household's own wallets | `betteroff_request_transfer` |
-| Request a bank transfer between the user's own linked accounts | `betteroff_request_bank_transfer` |
+| (Not available yet) Request a bank transfer between the user's own linked accounts | `betteroff_request_bank_transfer` |
 | Request a deposit into a supported vault | `betteroff_request_vault_deposit` |
 | Transfer request status | `betteroff_get_action_request` |
 | Cancel a transfer request before signing | `betteroff_cancel_action_request` |

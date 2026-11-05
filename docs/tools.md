@@ -46,7 +46,7 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_propose_allocation_targets` | Write | `investments:read`, `corrections:prepare` | Saves user-stated target allocation for approval in BetterOff. |
 | `betteroff_propose_budget` | Write | `transactions:read`, `corrections:prepare` | Saves a user-stated category budget for approval in BetterOff. |
 | `betteroff_request_transfer` | Write | `accounts:read`, `transfers:prepare` | Requests a USDC transfer between the household's own wallets; the user signs in BetterOff. |
-| `betteroff_request_bank_transfer` | Write | `accounts:read`, `transfers:bank` | Requests a transfer between the user's own linked accounts; the user confirms with a passkey. |
+| `betteroff_request_bank_transfer` | Write | `accounts:read`, `transfers:bank` | Not available yet: the hosted server does not offer this tool. Requests a transfer between the user's own linked accounts; the user confirms with a passkey. |
 | `betteroff_request_vault_deposit` | Write | `investments:read`, `transfers:vault` | Requests a USDC or USDT vault deposit; the user signs in BetterOff. |
 | `betteroff_get_action_request` | Read | `transfers:read` | Status of a transfer or deposit request. |
 | `betteroff_get_money_activity` | Read | `accounts:read`, `transactions:read` | Natural wallet balances and the status of payments, requests, and transfers. |
