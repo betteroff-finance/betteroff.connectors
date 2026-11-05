@@ -3,8 +3,9 @@
 Usage: python3 scripts/tools_catalog.py [--check] [--live]
   (no flag)  rewrite docs/tools.md
   --check    fail if docs/tools.md is stale or any skill or document disagrees with tools.json
-  --live     fail if the public OpenAPI tool operations disagree with tools.json, or a skill passes
-             an input name or enum value a tool does not accept (needs network)
+  --live     fail if the public OpenAPI tool names, count, titles, descriptions, scopes, or
+             read-only and destructive hints disagree with tools.json, or a skill passes an input
+             name or enum value a tool does not accept (needs network)
 """
 import argparse
 import json
@@ -84,24 +85,30 @@ def check_live(root, url=None):
     catalog = load(root)
     with urllib.request.urlopen(url or catalog['openapi'], timeout=30) as response:
         spec = json.load(response)
-    live = {}
-    for path, item in spec['paths'].items():
-        operation = item.get('post', {})
-        if path.startswith('/v1/tools/') and not operation.get('deprecated'):
-            live[operation['operationId']] = operation
+    operations = [item.get('post', {}) for path, item in spec['paths'].items() if path.startswith('/v1/tools/')]
+    operations = [operation for operation in operations if not operation.get('deprecated')]
+    live = {operation['operationId']: operation for operation in operations}
     errors = []
     if not spec['info']['version'].split('+')[0] == catalog['serverVersion']:
         errors.append(f"version: API {spec['info']['version']} != tools.json serverVersion {catalog['serverVersion']}")
-    expected = {t['name']: t for t in catalog['tools'] if not t.get('unavailable')}
+    available = [t for t in catalog['tools'] if not t.get('unavailable')]
+    expected = {t['name']: t for t in available}
+    if len(operations) != len(available):
+        errors.append(f'count: API lists {len(operations)} tools, tools.json lists {len(available)} available')
     for name in sorted(set(live) ^ set(expected)):
         errors.append(f"{name}: {'missing from tools.json' if name in live else 'missing from the API'}")
     for name in sorted(set(live) & set(expected)):
         tool, operation = expected[name], live[name]
         if operation.get('summary') != tool['title']:
             errors.append(f"{name}: title {tool['title']!r} != API {operation.get('summary')!r}")
+        if operation.get('description') != tool.get('description'):
+            errors.append(f'{name}: description differs from the API')
         read_only = operation.get('x-mcp-annotations', {}).get('readOnlyHint')
         if read_only is not tool['readOnly']:
             errors.append(f"{name}: readOnly {tool['readOnly']!r} != API readOnlyHint {read_only!r}")
+        destructive = operation.get('x-mcp-annotations', {}).get('destructiveHint')
+        if destructive is not tool.get('destructive', False):
+            errors.append(f"{name}: destructive {tool.get('destructive', False)!r} != API destructiveHint {destructive!r}")
         scopes = {s for requirement in operation.get('security', []) for s in requirement.get('agentOAuth', [])}
         if scopes != set(tool['scopes']):
             errors.append(f"{name}: scopes {sorted(tool['scopes'])} != API {sorted(scopes)}")
