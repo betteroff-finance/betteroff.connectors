@@ -71,7 +71,7 @@ class ToolCatalogTests(unittest.TestCase):
                 'operationId': tool['name'], 'summary': tool['title'],
                 'security': [{'agentOAuth': tool['scopes']}],
                 'x-mcp-annotations': {'readOnlyHint': tool['readOnly']},
-            }} for tool in catalog['tools']}}
+            }} for tool in catalog['tools'] if not tool.get('unavailable')}}
         target = self.root / 'spec.json'
         catalog['openapi'] = target.as_uri()
         (self.root / 'tools.json').write_text(json.dumps(catalog))
