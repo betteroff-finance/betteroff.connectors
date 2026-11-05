@@ -29,9 +29,13 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Observed recurring payments | `betteroff_list_recurring` |
 | Portfolio positions, allocation and concentration | `betteroff_get_portfolio` |
 | DeFi assets and liabilities | `betteroff_get_defi_positions` |
-| Search prediction markets | `betteroff_search_markets` |
 | Reported vault yields | `betteroff_get_vault_yields` |
 | Financial checklist progress | `betteroff_get_checklist` |
+| Household deadlines and renewals | `betteroff_list_deadlines` |
+| Recorded insurance policies | `betteroff_list_insurance` |
+| Budgets against spending and goal progress | `betteroff_get_budgets` |
+| Quarterly estimated tax from stated figures | `betteroff_estimate_quarterly_tax` |
+| Yearly giving and fee totals | `betteroff_get_giving_and_fees` |
 | Debt balances and missing terms | `betteroff_list_debts` |
 | Arithmetic payoff scenario | `betteroff_simulate_debt_payoff` |
 | Permitted financial changes | `betteroff_search_activity` |
@@ -40,6 +44,8 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Prepare category correction | `betteroff_propose_category_change` |
 | Prepare recurring classification | `betteroff_propose_recurring_kind` |
 | Prepare stated debt terms | `betteroff_propose_debt_details` |
+| Prepare user-stated allocation targets | `betteroff_propose_allocation_targets` |
+| Prepare a user-stated budget | `betteroff_propose_budget` |
 | Send approved diagnostic feedback | `betteroff_submit_feedback` |
 
 <!-- transfers -->
@@ -78,7 +84,7 @@ Read `code` and `retryable` before calling again. Never interpret a failed looku
 - For `RESULT_TOO_LARGE`, narrow the date range, account, filters, or page size. Follow returned cursors rather than asking for every row at once.
 - For `INSUFFICIENT_SCOPE`, tell the user to reconnect with the required permission.
 - For `INCOMPLETE_DATA`, name the missing inputs and follow the returned next step.
-- For `CORE_REQUIRED`, tell the user that this tool needs BetterOff Core, while the other tools work on every plan, and give the returned `nextStep`. Do not retry or substitute other reads for the missing data.
+- For `CORE_REQUIRED`, tell the user that this tool needs the Better plan, while the other tools work on every plan, and give the returned `nextStep`. Do not retry or substitute other reads for the missing data.
 - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
 - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.

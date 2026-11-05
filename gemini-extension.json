@@ -1,6 +1,6 @@
 {
 	"name": "betteroff",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections, wallet and bank transfers, and vault deposits for approval.",
 	"mcpServers": {
 		"betteroff": {

@@ -18,7 +18,7 @@ Confirm that the result identifies your household and reports observation dates 
 
 ## What the connector can do
 
-Connector package 0.6.0 describes hosted server 0.5.0 and defines up to 31 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
+Connector package 0.6.1 describes hosted server 0.5.0 and defines up to 37 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
 
 - **20 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, checklist progress, observations, financial activity, market search, and reported vault yields.
 - **Three correction proposals** cover payment categories, recurring items, and debt classifications.
@@ -90,4 +90,4 @@ The consent page identifies the client, household, permissions, and access durat
 - If a read fails, check `code` and `retryable`. Retry once if `retryable` is true. Otherwise, address the reported error before retrying. Do not treat a failed read as an empty result.
 - If records are missing or stale, preserve `quality.reasons` and warnings. Use `betteroff_get_setup_status` when available and follow its returned BetterOff links.
 
-Not every 0.5.0 tool has passed a live production test. Each client guide records its own test limits. Installing this repository does not list BetterOff in the ChatGPT or Claude connector directories. BetterOff is approved for the ChatGPT directory but not yet published; see the [directory guide](../integrations/directories/README.md).
+Not every 0.5.0 tool has passed a live production test. Each client guide records its own test limits. Installing this repository does not list BetterOff in the ChatGPT or Claude connector directories. BetterOff is listed publicly in the ChatGPT directory; see the [directory guide](../integrations/directories/README.md).

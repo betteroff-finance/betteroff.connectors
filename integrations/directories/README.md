@@ -8,7 +8,7 @@ This guide owns directory status, submission fields, and the acceptance procedur
 
 ## Status
 
-Recorded October 13, 2026; the ChatGPT row was updated October 22, 2026. Do not change a status without dated evidence for that destination.
+Recorded October 13, 2026; the ChatGPT row was updated November 2, 2026. Do not change a status without dated evidence for that destination.
 
 | Destination | Status | Next step |
 | --- | --- | --- |
@@ -16,7 +16,7 @@ Recorded October 13, 2026; the ChatGPT row was updated October 22, 2026. Do not 
 | Official MCP Registry, `finance.betteroff/public` | Deprecated October 29, 2026 at 08:13:51 UTC. Its remote `https://betteroff.finance/mcp` redirects to `/agents`, so connections failed. Glama copied this entry | Ask Glama to drop its copy |
 | [Smithery](#smithery) | Published; owned by a test-account namespace | Claim vendor ownership; test token renewal |
 | [Claude connector directory](#chatgpt-and-claude-connector-directories) | Not submitted | Submit through the developer portal |
-| [ChatGPT directory](#chatgpt-and-claude-connector-directories) | Approved October 22, 2026 as portal version 1.0.0; not published | Publish from the OpenAI plugins page, then test the transfer restriction in ChatGPT |
+| [ChatGPT directory](#chatgpt-and-claude-connector-directories) | Published and listed publicly; version 0.5.2 published November 2, 2026 from the OpenAI Plugins page | Test the transfer restriction in ChatGPT |
 | [Glama](#glama) | Not submitted; OAuth callback fails in Glama's inspector | Glama fixes its popup handoff |
 | [PulseMCP](#pulsemcp) | Not listed; manual submissions paused | Check for Registry ingestion when PulseMCP resumes |
 
@@ -33,7 +33,7 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 
 Claude Code plugin tests do not verify this destination. Source: [Submit a connector to the directory](https://claude.com/docs/connectors/building/submission), reviewed October 13, 2026.
 
-**ChatGPT.** Build the restricted package with the [ChatGPT submission procedure](../../CONTRIBUTING.md#chatgpt-submission-package). A generated ZIP is not an approved listing. OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026; it is not published yet, and no authenticated ChatGPT test is recorded.
+**ChatGPT.** Build the restricted package with the [ChatGPT submission procedure](../../CONTRIBUTING.md#chatgpt-submission-package). A generated ZIP is not an approved listing. OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026. Version 0.5.2 was published from the OpenAI Plugins page on November 2, 2026, replacing 0.5.1; the page shows it listed publicly. No authenticated ChatGPT test is recorded.
 
 The same `readOnlyHint` annotations drive Hermes Agent's approval prompt for `trust: untrusted` servers and Zapier's **Read-Only** label.
 
@@ -80,7 +80,7 @@ Use these fields for directory submissions. The official Registry and Smithery e
 
 BetterOff connects an AI assistant to your household's bank, brokerage, exchange, and wallet accounts. Review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Ask for a household overview, review a month of spending, or identify recurring subscriptions. Results include dates, source status, and incomplete-data warnings.
 
-An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Every tool, including read tools, requires BetterOff Core. Free accounts and trials cannot use the connector.
+An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Free. Some tools need the Better plan, and Insurance needs BetterOff Office, which is in early access.
 
 Correction tools prepare changes for approval in BetterOff. Separate transfer permissions can expose tools that prepare wallet transfers, bank transfers, or vault deposits; the user must approve each request in BetterOff and complete the required wallet signature or passkey confirmation. MCP tools cannot approve or execute those requests themselves. A separate, opt-in feedback tool sends user-approved diagnostic reports.
 

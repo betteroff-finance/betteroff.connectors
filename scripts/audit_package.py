@@ -185,7 +185,7 @@ for n, v in pmc.get("mcpServers", {}).items():
 agent_yaml = sorted((P / "skills").glob("*/agents/openai.yaml")) + sorted((root / "skills").glob("*/agents/openai.yaml"))
 for f in agent_yaml:
     if f'url: "{url}"' not in f.read_text(): e("endpoint_mismatch", f"{f.relative_to(root)}: dependency url must be {url}")
-endpoint_files = [root / "README.md", root / "AGENTS.md", root / "tools.json", root / "integrations/directories/server.json",
+endpoint_files = [root / "README.md", root / "tools.json", root / "integrations/directories/server.json",
                   P / "README.md", *sorted((root / "docs").rglob("*.md")), *agent_yaml]
 for doc in endpoint_files:
     if not doc.is_file(): continue
