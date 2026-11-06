@@ -40,6 +40,8 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Arithmetic payoff scenario | `betteroff_simulate_debt_payoff` |
 | Permitted financial changes | `betteroff_search_activity` |
 | Remaining setup and links | `betteroff_get_setup_status` |
+| Start a plan checkout | `betteroff_get_checkout_link` |
+| Add a public wallet to track | `betteroff_track_wallet` |
 | Stored financial findings | `betteroff_list_observations` |
 | Prepare category correction | `betteroff_propose_category_change` |
 | Prepare recurring classification | `betteroff_propose_recurring_kind` |

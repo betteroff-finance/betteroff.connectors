@@ -5,7 +5,7 @@
 
 [All clients](../README.md#install-the-connector) · [Connector reference](connector.md)
 
-Connector package 0.6.1 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 37 tools: 27 read tools and 10 write tools. A client sees only the tools its granted scopes allow.
+Connector package 0.6.1 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 39 tools: 28 read tools and 11 write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction or transfer request, cancel a pending request, or send feedback. None can apply a correction, approve a transfer, or sign a transaction. You do those in BetterOff. Cancellation and feedback take effect when called.
@@ -16,7 +16,7 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | Tool | Access | Scopes | Description |
 | --- | --- | --- | --- |
 | `betteroff_get_overview` | Read | `accounts:read`, `networth:read` | Household valuation, data coverage, identity, and connection health. |
-| `betteroff_get_setup_status` | Read | `accounts:read` | Remaining setup steps, billing status, reconnect links, and links to connect a bank or add a manual item. |
+| `betteroff_get_setup_status` | Read | `accounts:read` | Remaining setup steps, billing status, and reconnect links. |
 | `betteroff_list_accounts` | Read | `accounts:read` | Accounts with balances and balance observation dates. |
 | `betteroff_get_net_worth_history` | Read | `networth:read` | Stored net-worth valuations over a period. |
 | `betteroff_explain_net_worth_change` | Read | `networth:read` | Reconciles the change between two stored valuations. |
@@ -51,5 +51,6 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_get_action_request` | Read | `transfers:read` | Status of a transfer or deposit request. |
 | `betteroff_get_money_activity` | Read | `accounts:read`, `transactions:read` | Natural wallet balances and the status of payments, requests, and transfers. |
 | `betteroff_cancel_action_request` | Write | `transfers:prepare` or `transfers:bank` or `transfers:vault` | Cancels a pending request before it is signed. |
-| `betteroff_track_wallet` | Write | `wallets:track` | Adds a public wallet address the user provides. It cannot sign or move funds. |
+| `betteroff_track_wallet` | Write | `wallets:track` | Adds a public wallet address the user provides. |
 | `betteroff_submit_feedback` | Write | `feedback:submit` | Sends a user-approved diagnostic report to BetterOff support. |
+| `betteroff_get_checkout_link` | Read | `billing:checkout` | Sign-in-protected link to start a BetterOff plan checkout. |

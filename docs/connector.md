@@ -18,14 +18,14 @@ Confirm that the result identifies your household and reports observation dates 
 
 ## What the connector can do
 
-Connector package 0.6.1 describes hosted server 0.5.0 and defines up to 37 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
+Connector package 0.6.1 describes hosted server 0.5.0 and defines up to 39 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
 
 - **26 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, budgets, taxes, giving, checklist progress, deadlines, insurance, observations, financial activity, and reported vault yields.
 - **Five correction proposals** cover payment categories, recurring items, debt details, allocation targets, and budgets.
 - **Five transfer request tools** prepare wallet transfers, bank transfers, and vault deposits, read request status, and cancel pending requests. See [transfer permissions](#transfer-permissions). Status is read-only; the other four tools write request records. Bank transfer requests are not available right now.
 - **One feedback tool**, `betteroff_submit_feedback`, sends diagnostic reports you approve. It requires separate, opt-in `feedback:submit` permission. Reports must exclude financial records, conversation history, tool payloads, and credentials.
 
-The full catalog contains 27 read-only tools and 10 tools that write pending records or feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
+The full catalog contains 28 read-only tools and 11 tools that write pending records or feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
 
 ### Result quality
 
