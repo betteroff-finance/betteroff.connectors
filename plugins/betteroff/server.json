@@ -1,9 +1,0 @@
-{
-	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-	"name": "finance.betteroff/betteroff",
-	"title": "BetterOff",
-	"description": "See net worth, spending, cash flow, investments, and debt from BetterOff accounts.",
-	"version": "0.6.1",
-	"websiteUrl": "https://betteroff.finance",
-	"remotes": [{ "type": "streamable-http", "url": "https://api.betteroff.finance/mcp" }]
-}
