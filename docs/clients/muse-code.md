@@ -12,7 +12,7 @@ Read the [account and consent requirements](../../README.md#before-you-start) be
 
 ## Before you start
 
-Clone or download [this repository](https://github.com/raintree-technology/betteroff.connectors) and open a terminal at its root. Muse supports browser and headless OAuth sign-in. This guide uses user settings; plugin and project-only sign-in routes remain unverified.
+Clone or download [this repository](https://github.com/betteroff-finance/betteroff.connectors) and open a terminal at its root. Muse supports browser and headless OAuth sign-in. This guide uses user settings; plugin and project-only sign-in routes remain unverified.
 
 ## Configure and sign in
 

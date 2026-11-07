@@ -19,7 +19,7 @@ Use the Codex app or CLI. This plugin route is unavailable in the IDE extension.
 1. Add the marketplace and install BetterOff:
 
    ```sh
-   codex plugin marketplace add raintree-technology/betteroff.connectors
+   codex plugin marketplace add betteroff-finance/betteroff.connectors
    codex plugin add betteroff@betteroff
    ```
 

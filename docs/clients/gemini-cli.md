@@ -19,7 +19,7 @@ Use a machine with a browser that can reach Gemini’s `localhost` sign-in callb
 1. Install the extension:
 
    ```sh
-   gemini extensions install https://github.com/raintree-technology/betteroff.connectors
+   gemini extensions install https://github.com/betteroff-finance/betteroff.connectors
    ```
 
 2. Restart Gemini CLI.

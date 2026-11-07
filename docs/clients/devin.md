@@ -18,7 +18,7 @@ Use **Personal** access. **Organization** access shares one BetterOff sign-in ac
 
 1. Open **Customize** > **Plugins** and select **Personal**.
 2. Choose **Add plugin** > **From repository**.
-3. Enter `raintree-technology/betteroff.connectors` with the subdirectory `plugins/betteroff`.
+3. Enter `betteroff-finance/betteroff.connectors` with the subdirectory `plugins/betteroff`.
 4. Wait for indexing to finish.
 5. Open **Customize** > **MCPs**, select **betteroff**, and choose **Connect**.
 6. Complete the BetterOff sign-in prompt.
@@ -31,7 +31,7 @@ If the web listing is stale, use **Reindex plugins** in **Customize**. Updating 
 Sign in to Devin before installing plugins. By default, installation synchronizes to your personal Devin manifest. Add `--local` to the install command to install on only this machine.
 
 ```sh
-devin plugins install raintree-technology/betteroff.connectors#plugins/betteroff
+devin plugins install betteroff-finance/betteroff.connectors#plugins/betteroff
 devin mcp login betteroff
 ```
 

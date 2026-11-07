@@ -14,7 +14,7 @@ Read the [account and consent requirements](../../README.md#before-you-start) be
 
 Your organization must allow local plugin imports where that policy applies. Check **Allow Local Plugin Imports** before proceeding.
 
-1. Clone or download [this repository](https://github.com/raintree-technology/betteroff.connectors).
+1. Clone or download [this repository](https://github.com/betteroff-finance/betteroff.connectors).
 2. Copy `plugins/betteroff` into `~/.cursor/plugins/local/` so the plugin directory is `~/.cursor/plugins/local/betteroff`.
 3. Restart Cursor or run **Developer: Reload Window**.
 4. Open **Customize** and confirm that BetterOff is available.

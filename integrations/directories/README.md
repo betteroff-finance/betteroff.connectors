@@ -64,7 +64,7 @@ Use these fields for directory submissions. The official Registry and Smithery e
 | Homepage | https://betteroff.finance |
 | User documentation | https://betteroff.finance/agents |
 | Developer documentation | https://betteroff.finance/developers |
-| Connector distribution | https://github.com/raintree-technology/betteroff.connectors |
+| Connector distribution | https://github.com/betteroff-finance/betteroff.connectors |
 | Support | https://betteroff.finance/contact |
 | Privacy policy | https://betteroff.finance/legal/privacy |
 | Terms | https://betteroff.finance/legal/terms |

@@ -16,7 +16,7 @@ Use BetterOff’s OAuth sign-in. Leave custom headers empty; do not add an `Auth
 
 ## Connect in Grok Build
 
-To load both tools and skills, clone or download [this repository](https://github.com/raintree-technology/betteroff.connectors). Run this command from its root:
+To load both tools and skills, clone or download [this repository](https://github.com/betteroff-finance/betteroff.connectors). Run this command from its root:
 
 ```sh
 grok --plugin-dir ./plugins/betteroff

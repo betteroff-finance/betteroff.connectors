@@ -7,7 +7,7 @@
 		"name": "FinSync LLC"
 	},
 	"homepage": "https://betteroff.finance",
-	"repository": "https://github.com/raintree-technology/betteroff.connectors",
+	"repository": "https://github.com/betteroff-finance/betteroff.connectors",
 	"license": "MIT",
 	"keywords": [
 		"personal finance",

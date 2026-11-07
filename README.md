@@ -29,7 +29,7 @@
 
 Connect your AI client to [BetterOff](https://betteroff.finance/github) to review household finances, find recurring charges, and prepare corrections for your approval.
 
-**39 tools (bank transfers not available yet) · 11 skills · 11 client setup guides** · [![Audit](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/raintree-technology/betteroff.connectors/actions/workflows/audit.yml)
+**39 tools (bank transfers not available yet) · 11 skills · 11 client setup guides** · [![Audit](https://github.com/betteroff-finance/betteroff.connectors/actions/workflows/audit.yml/badge.svg)](https://github.com/betteroff-finance/betteroff.connectors/actions/workflows/audit.yml)
 
 [Quickstart](#quickstart) · [All clients](#install-the-connector) · [Tool reference](docs/tools.md) · [Connector reference](docs/connector.md) · [Security](SECURITY.md)
 
@@ -49,7 +49,7 @@ The [tool reference](docs/tools.md) lists each tool and the scopes it requires.
 1. Run these commands in a terminal:
 
    ```sh
-   claude plugin marketplace add raintree-technology/betteroff.connectors
+   claude plugin marketplace add betteroff-finance/betteroff.connectors
    claude plugin install betteroff@betteroff
    ```
 
@@ -61,7 +61,7 @@ The [tool reference](docs/tools.md) lists each tool and the scopes it requires.
 1. Run these commands in a terminal:
 
    ```sh
-   codex plugin marketplace add raintree-technology/betteroff.connectors
+   codex plugin marketplace add betteroff-finance/betteroff.connectors
    codex plugin add betteroff@betteroff
    ```
 
@@ -86,7 +86,7 @@ Each guide starts with what has been tested for that client. Codex, Claude Code,
 | <img src="assets/clients/claude-code.png" alt="" width="24" height="24" align="absmiddle"> Claude Code | `claude plugin install betteroff@betteroff` | [Claude Code guide](docs/clients/claude-code.md) |
 | <img src="assets/clients/github-copilot.svg" alt="" width="24" height="24" align="absmiddle"> GitHub Copilot | `copilot plugin install betteroff@betteroff` or VS Code | [GitHub Copilot guide](docs/clients/github-copilot.md) |
 | <img src="assets/clients/cursor.svg" alt="" width="24" height="24" align="absmiddle"> Cursor | Plugin or MCP settings | [Cursor guide](docs/clients/cursor.md) |
-| <img src="assets/clients/gemini-cli.png" alt="" width="24" height="24" align="absmiddle"> Gemini CLI | `gemini extensions install https://github.com/raintree-technology/betteroff.connectors` | [Gemini CLI guide](docs/clients/gemini-cli.md) |
+| <img src="assets/clients/gemini-cli.png" alt="" width="24" height="24" align="absmiddle"> Gemini CLI | `gemini extensions install https://github.com/betteroff-finance/betteroff.connectors` | [Gemini CLI guide](docs/clients/gemini-cli.md) |
 | <img src="assets/clients/devin.svg" alt="" width="24" height="24" align="absmiddle"> Devin | Web app or `devin mcp login betteroff` | [Devin guide](docs/clients/devin.md) |
 | <img src="assets/clients/hermes-agent.png" alt="" width="24" height="24" align="absmiddle"> Hermes Agent | `~/.hermes/config.yaml`, then `hermes mcp login betteroff` | [Hermes Agent guide](docs/clients/hermes-agent.md) |
 | <img src="assets/clients/muse-code.svg" alt="" width="24" height="16" align="absmiddle"> Muse Code | User settings, then `muse mcp login betteroff` | [Muse Code guide](docs/clients/muse-code.md) |

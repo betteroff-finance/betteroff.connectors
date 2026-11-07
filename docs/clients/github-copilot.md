@@ -17,7 +17,7 @@ Your organization’s policy can restrict plugins and marketplaces. Choose one i
 ## Install in VS Code
 
 1. Enable `chat.plugins.enabled` in VS Code settings.
-2. Add `raintree-technology/betteroff.connectors` to the `chat.plugins.marketplaces` array in your user `settings.json`. Preserve existing entries.
+2. Add `betteroff-finance/betteroff.connectors` to the `chat.plugins.marketplaces` array in your user `settings.json`. Preserve existing entries.
 3. Open the Extensions view and search `@agentPlugins`.
 4. Select **Install** for **betteroff**.
 5. Review the source trust prompt.
@@ -27,7 +27,7 @@ Use marketplace installation so VS Code resolves `plugins/betteroff` within the 
 ## Install in Copilot CLI
 
 ```sh
-copilot plugin marketplace add raintree-technology/betteroff.connectors
+copilot plugin marketplace add betteroff-finance/betteroff.connectors
 copilot plugin install betteroff@betteroff
 ```
 

@@ -15,7 +15,7 @@ Read the [account and consent requirements](../../README.md#before-you-start) be
 1. Add the marketplace and install BetterOff:
 
    ```sh
-   claude plugin marketplace add raintree-technology/betteroff.connectors
+   claude plugin marketplace add betteroff-finance/betteroff.connectors
    claude plugin install betteroff@betteroff
    ```
 

@@ -12,7 +12,7 @@ Read the [account and consent requirements](../../README.md#before-you-start) be
 
 ## Before you start
 
-Use Pi 0.99.0 or later. Clone or download [this repository](https://github.com/raintree-technology/betteroff.connectors) and open a terminal at its root.
+Use Pi 0.99.0 or later. Clone or download [this repository](https://github.com/betteroff-finance/betteroff.connectors) and open a terminal at its root.
 
 Skills copied to `~/.agents/skills/` are also available to other compatible clients. Review existing directories before copying; the command below can overwrite files with matching names.
 

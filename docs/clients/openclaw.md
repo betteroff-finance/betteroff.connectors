@@ -14,7 +14,7 @@ Read the [account and consent requirements](../../README.md#before-you-start) be
 
 Restrict access to the household owner and use a direct chat. OpenClaw shares one BetterOff sign-in by default. Anyone else who can message the agent could read that household’s finances.
 
-Clone or download [this repository](https://github.com/raintree-technology/betteroff.connectors) and open a terminal at its root.
+Clone or download [this repository](https://github.com/betteroff-finance/betteroff.connectors) and open a terminal at its root.
 
 ## Configure and sign in
 
