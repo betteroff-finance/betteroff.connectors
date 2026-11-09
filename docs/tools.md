@@ -9,7 +9,7 @@ Connector package 0.6.1 describes hosted server 0.5.0 at `https://api.betteroff.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction or transfer request, cancel a pending request, or send feedback. None can apply a correction, approve a transfer, or sign a transaction. You do those in BetterOff. Cancellation and feedback take effect when called.
-- Tools work on every plan, including Free, over MCP or REST. Better-only tools return `CORE_REQUIRED` on Free. Insurance needs Office, which is in early access.
+- Tools work on every plan, including Free, over MCP or REST. Better-only tools return `CORE_REQUIRED` on Free. Insurance needs the Best plan, which is in early access.
 
 The same catalog is available as [tools.json](../tools.json). With an API token, call any tool at `POST https://api.betteroff.finance/v1/tools/{name}`; see the [developer documentation](https://betteroff.finance/developers) and the [tool OpenAPI document](https://api.betteroff.finance/openapi/tools.json).
 

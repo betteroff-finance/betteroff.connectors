@@ -36,7 +36,7 @@ Connect your AI client to [BetterOff](https://betteroff.finance/github) to revie
 ## Before you start
 
 - **Account:** You need a BetterOff household owner account and a client listed below. To ask about your finances, first connect a supported financial account or wallet in BetterOff.
-- **Plan:** Tools work on every plan, including Free, over MCP or REST. Some tools need the Better plan and return `CORE_REQUIRED` on Free. Insurance needs BetterOff Office, which is in early access.
+- **Plan:** Tools work on every plan, including Free, over MCP or REST. Some tools need the Better plan and return `CORE_REQUIRED` on Free. Insurance needs the Best plan, which is in early access.
 - **Consent:** Every household member must turn on **Chat data access** in BetterOff settings, and you must accept the applicable BetterOff Terms. Your connected client receives the data that each tool returns.
 - **Approval:** The connector prepares corrections for your review. If you grant the transfer scopes, it can also request wallet transfers and vault deposits. You review each request in BetterOff, and each requires your wallet signature. Bank transfers are not available yet. The connector cannot apply a correction or approve or execute a request.
 
@@ -104,7 +104,7 @@ This repository contains no telemetry code. The connector sends nothing from you
 
 ## Directory listings
 
-BetterOff is published in the [official MCP Registry](integrations/directories/README.md#official-mcp-registry) as `finance.betteroff/mcp` and on [Smithery](integrations/directories/README.md#smithery). It is listed publicly in the ChatGPT directory; version 0.5.2 was published there November 2, 2026. It is not listed in the Claude connector directory, Glama, or PulseMCP. A [Zapier integration](integrations/zapier/README.md) is in private preview. The [directory guide](integrations/directories/README.md) tracks each submission.
+BetterOff is published in the [official MCP Registry](integrations/directories/README.md#official-mcp-registry) as `finance.betteroff/mcp`. It is listed publicly in the ChatGPT directory; version 0.5.2 was published there November 2, 2026. The Claude Code plugin is in the Claude plugin directory. BetterOff is not listed in the Claude connector directory or PulseMCP, and Glama lists it through a Registry import. A [Zapier integration](integrations/zapier/README.md) is in private preview. The [directory guide](integrations/directories/README.md) tracks each submission.
 
 ## Security and support
 

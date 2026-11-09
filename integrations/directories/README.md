@@ -8,17 +8,21 @@ This guide owns directory status, submission fields, and the acceptance procedur
 
 ## Status
 
-Recorded October 13, 2026; the ChatGPT row was updated November 2, 2026. Do not change a status without dated evidence for that destination.
+Recorded October 13, 2026; the ChatGPT row was updated November 2, 2026, and every other row was rechecked November 8, 2026 unless it says otherwise. Do not change a status without dated evidence for that destination.
 
 | Destination | Status | Next step |
 | --- | --- | --- |
 | [Official MCP Registry](#official-mcp-registry) | Published as `finance.betteroff/mcp` | Publish [server.json](server.json) with a new version for each change |
 | Official MCP Registry, `finance.betteroff/public` | Deprecated October 29, 2026 at 08:13:51 UTC. Its remote `https://betteroff.finance/mcp` redirects to `/agents`, so connections failed. Glama copied this entry | Ask Glama to drop its copy |
-| [Smithery](#smithery) | Published; owned by a test-account namespace | Claim vendor ownership; test token renewal |
+| [Smithery](#smithery) | Page returns Not found. Smithery ended its proxy and accounts October 31, 2026 | Recheck whether it lists direct URLs |
 | [Claude connector directory](#chatgpt-and-claude-connector-directories) | Not submitted | Submit through the developer portal |
+| Claude plugin directory | Published; an update is in review | None |
 | [ChatGPT directory](#chatgpt-and-claude-connector-directories) | Published and listed publicly; version 0.5.2 published November 2, 2026 from the OpenAI Plugins page | Test the transfer restriction in ChatGPT |
-| [Glama](#glama) | Not submitted; OAuth callback fails in Glama's inspector | Glama fixes its popup handoff |
-| [PulseMCP](#pulsemcp) | Not listed; manual submissions paused | Check for Registry ingestion when PulseMCP resumes |
+| [Glama](#glama) | Listed by Registry import | Maintainer follow-up |
+| [PulseMCP](#pulsemcp) | Not listed; a search returns 0 results and submissions are still paused | Check for Registry ingestion when PulseMCP resumes |
+| Cursor Marketplace | Not listed | Submit through the publisher form |
+| Gemini CLI gallery | Not in the gallery feed; the feed's newest entry is dated October 15, 2026 | Recheck after the feed updates |
+| MCP Market | Listed as the website's WebMCP tools, not the OAuth server | Correct the listing or add the OAuth server |
 
 The independent production lifecycle test passed: scoped sign-in, discovery, reads, refresh, and denial after disconnection. It verifies server behavior, not any destination's client.
 
@@ -26,7 +30,7 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 
 **Claude.** Submit at [claude.ai/directory/manage](https://claude.ai/directory/manage): select **Submit new**, then **MCP connector**. The submitter needs a paid Claude plan. Before submitting:
 
-1. Confirm every tool has a `title` and a `readOnlyHint` or `destructiveHint`. The server source sets `title`, `readOnlyHint` (true for read tools), and `destructiveHint: false` on all 29 tools; the portal's **Tools** step syncs and flags them from the live server. Confirm there before submitting.
+1. Confirm every tool has a `title` and a `readOnlyHint` or `destructiveHint`. The server source sets `title`, `readOnlyHint` (true for read tools), and `destructiveHint: false` as of a 29-tool review. `tools.json` now lists 39 tools, so confirm all of them in the portal's **Tools** step, which syncs and flags them from the live server.
 2. Add the server as a custom connector in Claude and call each tool with a synthetic household.
 3. Prepare reviewer credentials for a fully populated synthetic household. Enter them only in the portal.
 4. Complete the seven compliance acknowledgments, including financial transactions and prompt injection. Use the [shared listing copy](#shared-listing-copy).
@@ -51,7 +55,7 @@ Run this for each destination before submitting. A Glama submission may publish 
 
 ## Shared listing copy
 
-Use these fields for directory submissions. The official Registry and Smithery entries are published; Glama and PulseMCP remain unsubmitted in the recorded evidence. Resolve the [open items](#status) before submitting to Glama.
+Use these fields for directory submissions. The official Registry entry is published. Glama imported its entry from the Registry. PulseMCP remains unsubmitted.
 
 ### Shared fields
 
@@ -80,9 +84,9 @@ Use these fields for directory submissions. The official Registry and Smithery e
 
 BetterOff connects an AI assistant to your household's bank, brokerage, exchange, and wallet accounts. Review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Ask for a household overview, review a month of spending, or identify recurring subscriptions. Results include dates, source status, and incomplete-data warnings.
 
-An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Free. Some tools need the Better plan, and Insurance needs BetterOff Office, which is in early access.
+An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Free. Some tools need the Better plan, and Insurance needs the Best plan, which is in early access.
 
-Correction tools prepare changes for approval in BetterOff. Separate transfer permissions can expose tools that prepare wallet transfers, bank transfers, or vault deposits; the user must approve each request in BetterOff and complete the required wallet signature or passkey confirmation. MCP tools cannot approve or execute those requests themselves. A separate, opt-in feedback tool sends user-approved diagnostic reports.
+Correction tools prepare changes for approval in BetterOff. Separate transfer permissions can expose tools that prepare wallet transfers or vault deposits; bank transfers are not available yet. The user must approve each request in BetterOff and complete the required wallet signature or passkey confirmation. MCP tools cannot approve or execute those requests themselves. A separate, opt-in feedback tool sends user-approved diagnostic reports.
 
 Available tools depend on granted permissions. BetterOff does not provide individualized financial, tax, or legal advice through this connector.
 
@@ -112,7 +116,9 @@ The repository field is omitted because this repository distributes client confi
 
 ## Smithery
 
-**Published** at [smithery.ai/servers/b432acfe/betteroff](https://smithery.ai/servers/b432acfe/betteroff) after synthetic acceptance testing. Five read tools passed with `accounts:read` and `networth:read`, and disconnection was confirmed. Token renewal was not tested because `offline_access` was excluded.
+**Page not found as of November 8, 2026.** Smithery's notice says its proxy, `run.tools` URLs, API, accounts, and CLI ended October 31, 2026, and that smithery.ai continues as a public directory with a curated set of verified servers. `registry.smithery.ai/servers/b432acfe/betteroff` still returned the old record, with its `run.tools` URL. Other server pages tried also returned Not found. Do not send users to the Smithery URL.
+
+Published earlier at `smithery.ai/servers/b432acfe/betteroff` after synthetic acceptance testing. Five read tools passed with `accounts:read` and `networth:read`, and disconnection was confirmed. Token renewal was not tested because `offline_access` was excluded.
 
 | Field | Value |
 | --- | --- |
@@ -120,13 +126,15 @@ The repository field is omitted because this repository distributes client confi
 | Owner namespace | Dedicated test-account namespace `b432acfe`; verified vendor ownership is not established |
 | Hosting | Existing BetterOff hosting at `https://api.betteroff.finance/mcp` |
 
-Smithery scans tools after authentication and proxies upstream traffic. Use only a synthetic household for scans. The optional static server card at `/.well-known/mcp/server-card.json` returns 401; do not weaken endpoint authentication to make a scan pass. See [Smithery publishing requirements](https://smithery.ai/docs/build/publish).
+The optional static server card at `/.well-known/mcp/server-card.json` returns 401; do not weaken endpoint authentication for any directory scan.
 
 ## Glama
 
-**Not submitted.** Glama's inspector reaches BetterOff consent, but its callback cannot hand the authorization code back: Glama relies on the popup's opener, which BetterOff's `Cross-Origin-Opener-Policy` isolates. The recommended fix is a same-origin callback channel in Glama's client. BetterOff's opener isolation stays in place.
+**Listed by import, not submitted by us.** Connector pages exist for [`finance.betteroff/mcp`](https://glama.ai/mcp/connectors/finance.betteroff/mcp) and the deprecated [`finance.betteroff/public`](https://glama.ai/mcp/connectors/finance.betteroff/public).
 
-Use **Connector** on [Glama's connectors page](https://glama.ai/mcp/connectors). Glama publishes healthy connectors immediately, so treat **Add MCP Server → Connector** as publishing.
+Glama's inspector reaches BetterOff consent, but its callback cannot hand the authorization code back: Glama relies on the popup's opener, which BetterOff's `Cross-Origin-Opener-Policy` isolates. The recommended fix is a same-origin callback channel in Glama's client. BetterOff's opener isolation stays in place.
+
+Do not add a second connector.
 
 | Field | Value |
 | --- | --- |
@@ -138,7 +146,7 @@ Glama's gateway stores complete tool request and response payloads in call logs.
 
 ## PulseMCP
 
-**Not listed.** On October 13, 2026, the [submission page](https://www.pulsemcp.com/submit) said manual submissions and listing changes are paused, and that its pipeline will ingest the official Registry when it resumes. When it resumes, claim or correct the ingested entry instead of creating a duplicate.
+**Not listed.** A search for BetterOff returned 0 results on November 8, 2026, and the banner still says submissions are paused. On October 13, 2026, the [submission page](https://www.pulsemcp.com/submit) said manual submissions and listing changes are paused, and that its pipeline will ingest the official Registry when it resumes. When it resumes, claim or correct the ingested entry instead of creating a duplicate.
 
 | Field | Draft value |
 | --- | --- |
