@@ -133,12 +133,12 @@ class ToolCatalogTests(unittest.TestCase):
         spec['paths']['/v1/tools/duplicate'] = {'post': extra}
         (self.root / 'spec.json').write_text(json.dumps(spec))
         self.assertEqual(check_live(self.root, (self.root / 'spec.json').as_uri()),
-                         ['count: API lists 39 tools, tools.json lists 38 available'])
+                         ['count: API lists 40 tools, tools.json lists 39 available'])
         del spec['paths']['/v1/tools/duplicate']
         spec['paths']['/v1/tools/betteroff_new_tool'] = {'post': {'operationId': 'betteroff_new_tool'}}
         (self.root / 'spec.json').write_text(json.dumps(spec))
         errors = check_live(self.root, (self.root / 'spec.json').as_uri())
-        self.assertEqual(errors, ['count: API lists 39 tools, tools.json lists 38 available',
+        self.assertEqual(errors, ['count: API lists 40 tools, tools.json lists 39 available',
                                   'betteroff_new_tool: missing from tools.json'])
 
     def test_live_version_tracks_server_independently_of_package(self):
@@ -160,7 +160,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.assertIn(f'README.md must state "{count} tools"', check(self.root))
 
     def test_render_counts_tools(self):
-        self.assertIn('39 tools: 28 read tools and 11 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
+        self.assertIn('40 tools: 29 read tools and 11 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
 
 
     def test_live_skill_input_drift_fails(self):

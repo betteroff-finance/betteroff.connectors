@@ -30,7 +30,7 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 
 **Claude.** Submit at [claude.ai/directory/manage](https://claude.ai/directory/manage): select **Submit new**, then **MCP connector**. The submitter needs a paid Claude plan. Before submitting:
 
-1. Confirm every tool has a `title` and a `readOnlyHint` or `destructiveHint`. The server source sets `title`, `readOnlyHint` (true for read tools), and `destructiveHint: false` as of a 29-tool review. `tools.json` now lists 39 tools, so confirm all of them in the portal's **Tools** step, which syncs and flags them from the live server.
+1. Confirm every tool has a `title` and a `readOnlyHint` or `destructiveHint`. The server source sets `title`, `readOnlyHint` (true for read tools), and `destructiveHint: false` as of a 29-tool review. `tools.json` now lists 40 tools, so confirm all of them in the portal's **Tools** step, which syncs and flags them from the live server.
 2. Add the server as a custom connector in Claude and call each tool with a synthetic household.
 3. Prepare reviewer credentials for a fully populated synthetic household. Enter them only in the portal.
 4. Complete the seven compliance acknowledgments, including financial transactions and prompt injection. Use the [shared listing copy](#shared-listing-copy).

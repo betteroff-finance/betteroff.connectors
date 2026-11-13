@@ -18,7 +18,7 @@ Confirm that the result identifies your household and reports observation dates 
 
 ## What the connector can do
 
-Connector package 0.6.1 describes hosted server 0.5.0 and defines up to 39 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
+Connector package 0.6.1 describes hosted server 0.8.0 and defines up to 40 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
 
 - **26 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, budgets, taxes, giving, checklist progress, deadlines, insurance, observations, financial activity, and reported vault yields.
 - **Five correction proposals** cover payment categories, recurring items, debt details, allocation targets, and budgets.

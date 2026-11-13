@@ -25,6 +25,7 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Gross account deposits and withdrawals | `betteroff_get_account_flows` |
 | Household income and expenses | `betteroff_get_cash_flow` |
 | Cash-plan scenario from confirmed amounts | `betteroff_preview_cash_plan` |
+| Household's own order for idle cash, keep-back amount and split | `betteroff_get_cash_rules` |
 | Natural wallet balances and payment status | `betteroff_get_money_activity` |
 | Observed recurring payments | `betteroff_list_recurring` |
 | Portfolio positions, allocation and concentration | `betteroff_get_portfolio` |

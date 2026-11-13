@@ -5,7 +5,7 @@
 
 [All clients](../README.md#install-the-connector) · [Connector reference](connector.md)
 
-Connector package 0.6.1 describes hosted server 0.5.0 at `https://api.betteroff.finance/mcp` and defines 39 tools: 28 read tools and 11 write tools. A client sees only the tools its granted scopes allow.
+Connector package 0.6.1 describes hosted server 0.8.0 at `https://api.betteroff.finance/mcp` and defines 40 tools: 29 read tools and 11 write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction or transfer request, cancel a pending request, or send feedback. None can apply a correction, approve a transfer, or sign a transaction. You do those in BetterOff. Cancellation and feedback take effect when called.
@@ -26,6 +26,7 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_get_account_flows` | Read | `accounts:read`, `transactions:read` | Gross deposits and withdrawals for specific accounts. |
 | `betteroff_get_cash_flow` | Read | `cashflow:read` | Household income, expenses, and savings rate. |
 | `betteroff_preview_cash_plan` | Read | `cashflow:read` | Read-only cash-plan scenario from amounts the user confirmed. Moves no money. |
+| `betteroff_get_cash_rules` | Read | `accounts:read` | The household's order for idle cash, amount kept back, and bank, brokerage and onchain split. |
 | `betteroff_list_recurring` | Read | `cashflow:read` | Observed recurring bills, subscriptions, and income. |
 | `betteroff_get_portfolio` | Read | `investments:read` | Investment positions, allocation, and concentration. |
 | `betteroff_get_defi_positions` | Read | `investments:read` | DeFi lending, staking, and liquidity positions with assets and liabilities. |
