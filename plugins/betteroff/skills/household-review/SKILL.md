@@ -1,6 +1,6 @@
 ---
 name: household-review
-description: Answers direct questions about BetterOff accounts, balances, net worth, transactions, cash flow, and DeFi, and prepares corrections and transfer requests for review in BetterOff. Use for general financial questions; use the specialist skills for monthly reviews, spending changes, upcoming bills, net worth changes, subscription audits, portfolio checks, debt payoff comparisons, category cleanup, financial checkups, or connection problems.
+description: Answers direct questions about BetterOff accounts, balances, net worth, transactions, cash flow, and DeFi, and prepares corrections for review in BetterOff. Use for general financial questions; use the specialist skills for monthly reviews, spending changes, upcoming bills, net worth changes, subscription audits, portfolio checks, debt payoff comparisons, category cleanup, financial checkups, or connection problems.
 ---
 
 # BetterOff household review
@@ -9,7 +9,7 @@ Use the shared `betteroff_` tools. The user's explicit instructions take priorit
 
 A tool that the connection lacks permission for may be hidden, or it may return `INSUFFICIENT_SCOPE` naming the permission. Tell the user to reconnect BetterOff and grant that permission.
 
-Describe only tools exposed in the current chat. If no correction or transfer tools are available, say this connection's financial access is read-only. Tool restrictions reduce risk but do not establish end-to-end security.
+Describe only tools exposed in the current chat. If no correction tools are available, say this connection's financial access is read-only. Tool restrictions reduce risk but do not establish end-to-end security.
 
 ## Choose a tool
 
@@ -26,13 +26,11 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Household income and expenses | `betteroff_get_cash_flow` |
 | Cash-plan scenario from confirmed amounts | `betteroff_preview_cash_plan` |
 | Household's own order for idle cash, keep-back amount and split | `betteroff_get_cash_rules` |
-| Natural wallet balances and payment status | `betteroff_get_money_activity` |
 | Observed recurring payments | `betteroff_list_recurring` |
 | Portfolio positions, allocation and concentration | `betteroff_get_portfolio` |
 | DeFi assets and liabilities | `betteroff_get_defi_positions` |
 | Financial checklist progress | `betteroff_get_checklist` |
 | Household deadlines and renewals | `betteroff_list_deadlines` |
-| Recorded insurance policies | `betteroff_list_insurance` |
 | Budgets against spending and goal progress | `betteroff_get_budgets` |
 | Quarterly estimated tax from stated figures | `betteroff_estimate_quarterly_tax` |
 | Yearly giving and fee totals | `betteroff_get_giving_and_fees` |
@@ -101,7 +99,7 @@ Category review offers two choices: selected payments only; or selected payments
 
 Approval checks the current household, role, originating grant, expiry, and source versions. A stale proposal must be prepared again. Approval retries reuse the saved result. Undo restores only records that have not changed since approval; later edits remain. Payments ingested after approval remain as recorded, while undo restores the rule for subsequent ingestion.
 
-The tools cannot approve or execute transfer requests, pay bills, or place trades. Describe supported financial facts and arithmetic without presenting individualized investment, tax, or legal advice.
+The tools cannot move money, pay bills, or place trades. Describe supported financial facts and arithmetic without presenting individualized investment, tax, or legal advice.
 
 ## Send feedback
 

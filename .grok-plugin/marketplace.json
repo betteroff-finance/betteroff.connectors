@@ -11,7 +11,7 @@
         "type": "local",
         "path": "./plugins/betteroff"
       },
-      "description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections and bank transfers for approval.",
+      "description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections for approval.",
       "category": "finance",
       "homepage": "https://betteroff.finance",
       "keywords": [

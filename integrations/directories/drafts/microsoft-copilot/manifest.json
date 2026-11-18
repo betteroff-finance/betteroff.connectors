@@ -13,7 +13,7 @@
   "name": { "short": "BetterOff", "full": "BetterOff household finance" },
   "description": {
     "short": "Review household accounts, spending, net worth, and debt.",
-    "full": "BetterOff connects Copilot to your household's bank, brokerage, exchange, and wallet accounts. Review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Corrections and transfer requests are prepared for your approval in BetterOff; Copilot cannot approve or execute them. Requires a BetterOff Core subscription."
+    "full": "BetterOff connects Copilot to your household's bank, brokerage, exchange, and wallet accounts. Review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Corrections are prepared for your approval in BetterOff; Copilot cannot approve or apply them. Requires a BetterOff account."
   },
   "accentColor": "#1F2937",
   "copilotAgents": {

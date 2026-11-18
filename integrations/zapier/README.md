@@ -15,9 +15,9 @@ Open the integration from **My integrations** in the [Zapier Developer Platform]
 | Get Financial Overview | `betteroff_get_overview` | `accounts:read`, `networth:read` |
 | Get Net Worth History | `betteroff_get_net_worth_history` | `networth:read` |
 
-These are retrieval actions. Zapier’s `create` operation type describes their placement in a Zap, not a financial write. Each snippet fixes its destination and tool name. There is no generic tool runner, transfer operation, correction proposal, feedback submission, or user-supplied URL.
+These are retrieval actions. Zapier’s `create` operation type describes their placement in a Zap, not a financial write. Each snippet fixes its destination and tool name. There is no generic tool runner, correction proposal, feedback submission, or user-supplied URL.
 
-The listing draft uses BetterOff’s public REST tool adapter and API token authentication. This is separate from the OAuth MCP connection test. Create a dedicated token with only `accounts:read` and `networth:read`; the adapter does not inspect a token’s other permissions. Never use a token with write or transfer permissions. Tokens expire, so users must reconnect with a replacement before expiry.
+The listing draft uses BetterOff’s public REST tool adapter and API token authentication. This is separate from the OAuth MCP connection test. Create a dedicated token with only `accounts:read` and `networth:read`; the adapter does not inspect a token’s other permissions. Never use a token with write permissions. Tokens expire, so users must reconnect with a replacement before expiry.
 
 No dependencies are required to generate or test these Platform UI snippets. This is not a CLI upload package or a Platform UI import format.
 

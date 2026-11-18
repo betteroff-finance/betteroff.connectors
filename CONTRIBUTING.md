@@ -58,7 +58,7 @@ Date official-source reviews separately from BetterOff tests. A documentation re
 Maintainers need sibling checkouts of `betteroff.finance` and `betteroff.connectors`. Contributors without finance access should describe the proposed plugin change in an issue so a maintainer can apply it at the source.
 
 1. Review both working trees. Reconcile connector-only plugin changes in finance before syncing so they are not overwritten.
-2. In finance, edit `plugins/betteroff/skills/<name>/SKILL.md` and its `agents/openai.yaml` when applicable. Edit manifests under `plugins/betteroff/` and the ChatGPT generator at `tools/connectors/package-chatgpt.py`. Wrap transfer-only text in `<!-- transfers -->` and `<!-- /transfers -->` lines; the ChatGPT package removes those blocks.
+2. In finance, edit `plugins/betteroff/skills/<name>/SKILL.md` and its `agents/openai.yaml` when applicable. Edit manifests under `plugins/betteroff/` and the ChatGPT generator at `tools/connectors/package-chatgpt.py`.
 3. From finance, run `bun tools/connectors/sync-public.ts ../connectors`, then repeat with `--check`. This updates the distributed plugin, root Gemini metadata and skills, marketplace manifests, and `scripts/package_chatgpt.py`.
 4. When shared rules change, update them in each applicable finance skill and align this repository's `scripts/core_rules.md` with those rules. Run `python3 scripts/sync_skills.py --check` here to verify the mirror. Do not run its write mode with stale rules: it overwrites the distributed skills. `household-review` has its own fuller rules.
 5. Run the package audit below. CI checks every distributed file, including agent metadata. Review unexpected files manually; the finance sync command refuses to remove target-only plugin files.
@@ -114,7 +114,7 @@ Generate the ChatGPT ZIP separately from the shared client plugin:
 python3 scripts/package_chatgpt.py /tmp/betteroff-chatgpt.zip
 ```
 
-The generator uses `https://api.betteroff.finance/mcp`, the URL fixed at OpenAI registration. It removes transfer tools and transfer instructions from the ZIP. The generator documents a server restriction for the verified ChatGPT client; verify that restriction through an authenticated ChatGPT test before uploading for review. Package filtering alone does not establish server enforcement.
+The generator uses `https://api.betteroff.finance/mcp`, the URL fixed at OpenAI registration. It packages the shared manifest, skills, and assets unchanged. Verify the package through an authenticated ChatGPT test before uploading for review.
 
 ## Client verification
 

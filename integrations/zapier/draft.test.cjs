@@ -23,7 +23,7 @@ test('only the two approved reads are callable, with no dynamic tool or destinat
   assert.deepEqual(draft.requestTemplate, { params: { source: 'zapier' }, headers: {} });
   assert.deepEqual(operations.map(o => o.tool), ['betteroff_get_overview', 'betteroff_get_net_worth_history']);
   for (const operation of operations) {
-    const { requests, result } = run(operation, {}, { tool: 'betteroff_request_bank_transfer', url: 'https://example.invalid', amount: '100' });
+    const { requests, result } = run(operation, {}, { tool: 'betteroff_propose_category_change', url: 'https://example.invalid', category: 'ENTERTAINMENT' });
     assert.deepEqual(await result, success);
     assert.equal(requests[0].url, `https://api.betteroff.finance/v1/tools/${operation.tool}`);
     assert.deepEqual(requests[0].body, operation.key === 'get_overview' ? {} : { period: '30d' });

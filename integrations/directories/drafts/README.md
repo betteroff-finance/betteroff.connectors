@@ -35,7 +35,7 @@ Subject: Listing BetterOff's MCP connector in Grok
 
 Hi,
 
-I run BetterOff, a household finance app from FinSync LLC. We have a remote MCP server that lets an assistant read a household's bank, brokerage, exchange, and wallet accounts, with per-user OAuth consent. Users approve any changes or transfers in BetterOff, never in the assistant.
+I run BetterOff, a household finance app from FinSync LLC. We have a remote MCP server that lets an assistant read a household's bank, brokerage, exchange, and wallet accounts, with per-user OAuth consent. Users approve any changes in BetterOff, never in the assistant.
 
 It's listed in the ChatGPT directory and the official MCP Registry as `finance.betteroff/mcp`. We'd like Grok users to be able to connect it too. Is there a connector directory or partner program we can apply to?
 

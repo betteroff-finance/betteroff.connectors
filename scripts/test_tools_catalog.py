@@ -33,12 +33,12 @@ class ToolCatalogTests(unittest.TestCase):
 
     def test_unavailable_and_any_scope_tools_render_honestly(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
+        tool = next(t for t in catalog['tools'] if t['name'] == 'betteroff_propose_budget')
+        self.assertRegex(render(catalog), r'betteroff_propose_budget` \| Write \| `transactions:read`, `corrections:prepare` \|')
+        tool.update(anyScope=True, unavailable=True)
         table = render(catalog)
-        self.assertRegex(table, r'betteroff_cancel_action_request` \| Write \| `transfers:bank` \|')
-        cancel = next(t for t in catalog['tools'] if t['name'] == 'betteroff_cancel_action_request')
-        cancel.update(scopes=['transfers:bank', 'transfers:read'], anyScope=True)
-        self.assertIn('`transfers:bank` or `transfers:read`', render(catalog))
-        self.assertRegex(table, r'betteroff_request_bank_transfer.*Not available right now\.')
+        self.assertIn('`transactions:read` or `corrections:prepare`', table)
+        self.assertRegex(table, r'betteroff_propose_budget.*Not available right now\.')
 
     def test_live_check_expects_no_unavailable_tool(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
@@ -99,9 +99,9 @@ class ToolCatalogTests(unittest.TestCase):
             operation['x-mcp-annotations'] = {'readOnlyHint': read_only,
                                               'destructiveHint': tool.get('destructive', False)}
 
-    def test_only_cancel_action_request_is_destructive(self):
+    def test_no_tool_is_destructive(self):
         tools = json.loads((ROOT / 'tools.json').read_text())['tools']
-        self.assertEqual([t['name'] for t in tools if t.get('destructive')], ['betteroff_cancel_action_request'])
+        self.assertEqual([t['name'] for t in tools if t.get('destructive')], [])
 
     def test_live_description_drift_fails(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
@@ -116,7 +116,10 @@ class ToolCatalogTests(unittest.TestCase):
 
     def test_live_destructive_drift_fails(self):
         catalog = json.loads((self.root / 'tools.json').read_text())
-        cancel = next(t for t in catalog['tools'] if t.get('destructive'))
+        # No published tool is destructive, so mark one to check that both directions are caught.
+        cancel = next(t for t in catalog['tools'] if not t['readOnly'])
+        cancel['destructive'] = True
+        (self.root / 'tools.json').write_text(json.dumps(catalog))
         other = next(t for t in catalog['tools'] if not t.get('destructive') and not t.get('unavailable'))
         for tool, hint in ((cancel, False), (other, True), (cancel, None), (other, None)):
             with self.subTest(tool=tool['name'], hint=hint):
@@ -136,13 +139,14 @@ class ToolCatalogTests(unittest.TestCase):
         extra = live_operation(catalog['tools'][0])
         spec['paths']['/v1/tools/duplicate'] = {'post': extra}
         (self.root / 'spec.json').write_text(json.dumps(spec))
+        count = len(catalog['tools'])
         self.assertEqual(check_live(self.root, (self.root / 'spec.json').as_uri()),
-                         ['count: API lists 37 tools, tools.json lists 36 available'])
+                         [f'count: API lists {count + 1} tools, tools.json lists {count} available'])
         del spec['paths']['/v1/tools/duplicate']
         spec['paths']['/v1/tools/betteroff_new_tool'] = {'post': {'operationId': 'betteroff_new_tool'}}
         (self.root / 'spec.json').write_text(json.dumps(spec))
         errors = check_live(self.root, (self.root / 'spec.json').as_uri())
-        self.assertEqual(errors, ['count: API lists 37 tools, tools.json lists 36 available',
+        self.assertEqual(errors, [f'count: API lists {count + 1} tools, tools.json lists {count} available',
                                   'betteroff_new_tool: missing from tools.json'])
 
     def test_live_version_tracks_server_independently_of_package(self):
@@ -164,7 +168,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.assertIn(f'README.md must state "{count} tools"', check(self.root))
 
     def test_render_counts_tools(self):
-        self.assertIn('37 tools: 28 read tools and 9 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
+        self.assertIn('32 tools: 25 read tools and 7 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
 
 
     def test_live_skill_input_drift_fails(self):

@@ -17,7 +17,7 @@ Recorded October 13, 2026; the ChatGPT row was updated November 2, 2026, and eve
 | [Smithery](#smithery) | Page returns Not found. Smithery ended its proxy and accounts October 31, 2026 | Recheck whether it lists direct URLs |
 | [Claude connector directory](#chatgpt-and-claude-connector-directories) | Not submitted | Submit through the developer portal |
 | Claude plugin directory | Published; an update is in review | None |
-| [ChatGPT directory](#chatgpt-and-claude-connector-directories) | Published and listed publicly; version 0.5.2 published November 2, 2026 from the OpenAI Plugins page | Test the transfer restriction in ChatGPT |
+| [ChatGPT directory](#chatgpt-and-claude-connector-directories) | Published and listed publicly; version 0.5.2 published November 2, 2026 from the OpenAI Plugins page | None |
 | [Glama](#glama) | Listed by Registry import | Maintainer follow-up |
 | [PulseMCP](#pulsemcp) | Not listed; a search returns 0 results and submissions are still paused | Check for Registry ingestion when PulseMCP resumes |
 | Cursor Marketplace | Not listed | Submit through the publisher form |
@@ -37,7 +37,7 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 
 Claude Code plugin tests do not verify this destination. Source: [Submit a connector to the directory](https://claude.com/docs/connectors/building/submission), reviewed October 13, 2026.
 
-**ChatGPT.** Build the restricted package with the [ChatGPT submission procedure](../../CONTRIBUTING.md#chatgpt-submission-package). A generated ZIP is not an approved listing. OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026. Version 0.5.2 was published from the OpenAI Plugins page on November 2, 2026, replacing 0.5.1; the page shows it listed publicly. No authenticated ChatGPT test is recorded.
+**ChatGPT.** Build the package with the [ChatGPT submission procedure](../../CONTRIBUTING.md#chatgpt-submission-package). A generated ZIP is not an approved listing. OpenAI approved BetterOff for the ChatGPT directory on October 22, 2026. Version 0.5.2 was published from the OpenAI Plugins page on November 2, 2026, replacing 0.5.1; the page shows it listed publicly. No authenticated ChatGPT test is recorded.
 
 The same `readOnlyHint` annotations drive Hermes Agent's approval prompt for `trust: untrusted` servers and Zapier's **Read-Only** label.
 
@@ -47,7 +47,7 @@ Run this for each destination before submitting. A Glama submission may publish 
 
 1. Use a dedicated synthetic household owner and verify the household identity before granting access.
 2. Request `accounts:read` and `networth:read`, the explicit `/mcp` resource audience, and `offline_access` only for refresh testing. Record any client that cannot narrow its scopes.
-3. Initialize the connection and record server name, version, and negotiated protocol. List tools and confirm the limited grant exposes no correction, feedback, or transfer tools.
+3. Initialize the connection and record server name, version, and negotiated protocol. List tools and confirm the limited grant exposes no correction or feedback tools.
 4. Call `betteroff_get_setup_status`, `betteroff_get_overview`, and `betteroff_get_net_worth_history`. Compare values with the synthetic fixture and preserve missing-data warnings. Record request IDs, not tokens or household records.
 5. Refresh the connection and repeat a read to confirm renewal.
 6. Disconnect in BetterOff. Confirm a new read and a refresh attempt are denied. Removing a connection from the directory client alone is insufficient.
@@ -63,7 +63,7 @@ Use these fields for directory submissions. The official Registry entry is publi
 | --- | --- |
 | Display name | BetterOff |
 | Publisher | FinSync LLC |
-| Short description | Read bank, brokerage, exchange, and wallet accounts; prepare changes and transfers for approval. |
+| Short description | Read bank, brokerage, exchange, and wallet accounts; prepare changes for approval. |
 | Suggested categories | Finance; Personal finance; Productivity. Select only categories the destination actually offers. |
 | Homepage | https://betteroff.finance |
 | User documentation | https://betteroff.finance/agents |
@@ -84,9 +84,9 @@ Use these fields for directory submissions. The official Registry entry is publi
 
 BetterOff connects an AI assistant to your household's bank, brokerage, exchange, and wallet accounts. Review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Ask for a household overview, review a month of spending, or identify recurring subscriptions. Results include dates, source status, and incomplete-data warnings.
 
-An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Free. Some tools need the Better plan, and Insurance needs the Best plan, which is in early access.
+An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Core. Some tools need the Plus plan.
 
-Correction tools prepare changes for approval in BetterOff. A separate transfer permission can expose tools that prepare bank transfers between the user's own linked accounts; bank transfers are not available yet. The user must approve each request in BetterOff with a passkey. MCP tools cannot approve or execute those requests themselves. A separate, opt-in feedback tool sends user-approved diagnostic reports.
+Correction tools prepare changes for approval in BetterOff. MCP tools cannot approve or apply those changes, or move money. A separate, opt-in feedback tool sends user-approved diagnostic reports.
 
 Available tools depend on granted permissions. BetterOff does not provide individualized financial, tax, or legal advice through this connector.
 
@@ -100,7 +100,7 @@ Available tools depend on granted permissions. BetterOff does not provide indivi
 
 ### Reviewer setup notes
 
-Use a dedicated synthetic household. Start with `accounts:read` and `networth:read`; do not request transfer, correction, or feedback permissions for the initial connection check. Include the resource parameter `https://api.betteroff.finance/mcp` in OAuth authorization and token exchange. Request `offline_access` only if testing refresh.
+Use a dedicated synthetic household. Start with `accounts:read` and `networth:read`; do not request correction or feedback permissions for the initial connection check. Include the resource parameter `https://api.betteroff.finance/mcp` in OAuth authorization and token exchange. Request `offline_access` only if testing refresh.
 
 This is a limited test grant, not a promise that the general endpoint only supports read tools. Do not describe the endpoint as read-only or claim that all its tools have passed live tests.
 
@@ -151,7 +151,7 @@ Glama's gateway stores complete tool request and response payloads in call logs.
 | Field | Draft value |
 | --- | --- |
 | Server name / provider | Use Display name / Publisher from the shared fields |
-| Summary | Connect an AI assistant to BetterOff to review household accounts, spending, net worth, investments, and debt. Prepare corrections and transfer requests for approval in BetterOff. |
+| Summary | Connect an AI assistant to BetterOff to review household accounts, spending, net worth, investments, and debt. Prepare corrections for approval in BetterOff. |
 | Hosted endpoint / setup documentation / public connector repository | Use Remote URL / User documentation / Connector distribution from the shared fields |
 | Registry name | finance.betteroff/mcp; published October 13, 2026 |
 | Authentication / license / pricing | Use the shared fields and full description |

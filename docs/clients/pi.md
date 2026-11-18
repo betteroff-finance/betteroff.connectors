@@ -46,7 +46,7 @@ Skills copied to `~/.agents/skills/` are also available to other compatible clie
 5. Run `/reload` in an open Pi session to load the skills and server configuration.
 6. Open `/mcp` to inspect the connection.
 
-Pi can run tools without prompts; permission extensions can change that behavior. Corrections and transfer requests still require approval in BetterOff.
+Pi can run tools without prompts; permission extensions can change that behavior. Corrections still require approval in BetterOff.
 
 ## Resolve configuration conflicts
 

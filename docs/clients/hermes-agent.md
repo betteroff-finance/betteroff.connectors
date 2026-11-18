@@ -24,7 +24,7 @@ Read the [account and consent requirements](../../README.md#before-you-start) be
          enabled: false
    ```
 
-   Keep `trust: untrusted`. Hermes then asks before running tools that are not marked read-only, including correction proposals and transfer requests.
+   Keep `trust: untrusted`. Hermes then asks before running tools that are not marked read-only, including correction proposals.
 
 2. Start the BetterOff sign-in flow:
 
