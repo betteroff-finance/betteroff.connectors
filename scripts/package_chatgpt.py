@@ -32,8 +32,8 @@ def build(output):
     interface['longDescription'] = description[:start] + description[end:]
     listing['publication']['release_notes'] = 'ChatGPT cannot access transfer tools. Read household finances and prepare corrections for approval in BetterOff.'
     listing['review']['test_cases']['negative'][0] = {
-        'prompt': 'Move $500 from my checking account to my savings account.',
-        'description': 'This ChatGPT plugin cannot request or execute bank transfers. Explain that limitation, call no transfer tool, and claim no transfer.'
+        'prompt': 'Send 10 USDC to my other wallet.',
+        'description': 'This ChatGPT plugin cannot request or execute bank or crypto transfers. Explain that limitation, call no transfer tool, and claim no transfer.'
     }
     mcp = json.loads((SOURCE / 'mcp.json').read_text())
     # OpenAI fixes this URL at registration. The API restricts the verified ChatGPT client.
