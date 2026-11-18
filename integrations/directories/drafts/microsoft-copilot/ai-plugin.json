@@ -3,7 +3,7 @@
   "schema_version": "v2.4",
   "name_for_human": "BetterOff",
   "description_for_human": "Household accounts, spending, net worth, investments, and debt.",
-  "contact_email": "zach@betteroff.finance",
+  "contact_email": "support@betteroff.finance",
   "namespace": "betteroff",
   "logo_url": "https://api.betteroff.finance/.well-known/betteroff-icon.png",
   "legal_info_url": "https://betteroff.finance/legal/terms",

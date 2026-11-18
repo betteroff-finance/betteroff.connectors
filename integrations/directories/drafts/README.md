@@ -21,7 +21,7 @@ Use the [shared listing copy](../README.md#shared-listing-copy). Before submitti
 | --- | --- |
 | App name | BetterOff |
 | Developer | FinSync LLC |
-| Support email | zach@betteroff.finance |
+| Support email | support@betteroff.finance |
 | Short description | Review household accounts, spending, net worth, investments, and debt. |
 | Long description | Shared full description |
 | MCP endpoint | https://api.betteroff.finance/mcp (Streamable HTTP, OAuth with PKCE) |
