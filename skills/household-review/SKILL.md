@@ -50,16 +50,6 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Prepare a user-stated budget | `betteroff_propose_budget` |
 | Send approved diagnostic feedback | `betteroff_submit_feedback` |
 
-<!-- transfers -->
-Bank transfer request tools need a separate transfer permission:
-
-| Task | Tool |
-| --- | --- |
-| (Not available yet) Request a bank transfer between the user's own linked accounts | `betteroff_request_bank_transfer` |
-| Bank transfer request status | `betteroff_get_action_request` |
-| Cancel a bank transfer request before approval | `betteroff_cancel_action_request` |
-<!-- /transfers -->
-
 ## Interpret results
 
 1. State the currency and observation date. Account amounts may use different currencies; never add them without a supported conversion.
@@ -112,10 +102,6 @@ Category review offers two choices: selected payments only; or selected payments
 Approval checks the current household, role, originating grant, expiry, and source versions. A stale proposal must be prepared again. Approval retries reuse the saved result. Undo restores only records that have not changed since approval; later edits remain. Payments ingested after approval remain as recorded, while undo restores the rule for subsequent ingestion.
 
 The tools cannot approve or execute transfer requests, pay bills, or place trades. Describe supported financial facts and arithmetic without presenting individualized investment, tax, or legal advice.
-
-<!-- transfers -->
-With the separate `transfers:bank` permission, request tools can prepare bank transfers between the user's own linked accounts. Give the returned review link and say it awaits approval in BetterOff by the person who requested it. Approval uses a passkey-verified sign-in valid for up to 12 hours.
-<!-- /transfers -->
 
 ## Send feedback
 
