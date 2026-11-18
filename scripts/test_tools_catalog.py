@@ -32,8 +32,12 @@ class ToolCatalogTests(unittest.TestCase):
             shutil.copyfile(ROOT / name, self.root / name)
 
     def test_unavailable_and_any_scope_tools_render_honestly(self):
-        table = render(json.loads((self.root / 'tools.json').read_text()))
-        self.assertIn('`transfers:prepare` or `transfers:bank` or `transfers:vault`', table)
+        catalog = json.loads((self.root / 'tools.json').read_text())
+        table = render(catalog)
+        self.assertRegex(table, r'betteroff_cancel_action_request` \| Write \| `transfers:bank` \|')
+        cancel = next(t for t in catalog['tools'] if t['name'] == 'betteroff_cancel_action_request')
+        cancel.update(scopes=['transfers:bank', 'transfers:read'], anyScope=True)
+        self.assertIn('`transfers:bank` or `transfers:read`', render(catalog))
         self.assertRegex(table, r'betteroff_request_bank_transfer.*Not available right now\.')
 
     def test_live_check_expects_no_unavailable_tool(self):
@@ -133,12 +137,12 @@ class ToolCatalogTests(unittest.TestCase):
         spec['paths']['/v1/tools/duplicate'] = {'post': extra}
         (self.root / 'spec.json').write_text(json.dumps(spec))
         self.assertEqual(check_live(self.root, (self.root / 'spec.json').as_uri()),
-                         ['count: API lists 40 tools, tools.json lists 39 available'])
+                         ['count: API lists 37 tools, tools.json lists 36 available'])
         del spec['paths']['/v1/tools/duplicate']
         spec['paths']['/v1/tools/betteroff_new_tool'] = {'post': {'operationId': 'betteroff_new_tool'}}
         (self.root / 'spec.json').write_text(json.dumps(spec))
         errors = check_live(self.root, (self.root / 'spec.json').as_uri())
-        self.assertEqual(errors, ['count: API lists 40 tools, tools.json lists 39 available',
+        self.assertEqual(errors, ['count: API lists 37 tools, tools.json lists 36 available',
                                   'betteroff_new_tool: missing from tools.json'])
 
     def test_live_version_tracks_server_independently_of_package(self):
@@ -160,7 +164,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.assertIn(f'README.md must state "{count} tools"', check(self.root))
 
     def test_render_counts_tools(self):
-        self.assertIn('40 tools: 29 read tools and 11 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
+        self.assertIn('37 tools: 28 read tools and 9 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
 
 
     def test_live_skill_input_drift_fails(self):

@@ -16,5 +16,5 @@
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
 - The tools cannot approve or execute transfer requests, pay bills, or place trades. Do not give individualized investment, tax, or legal advice.
 <!-- transfers -->
-- With the separate transfer permission, the tools can prepare wallet transfers, bank transfers, and vault deposits. An authorized user reviews and approves each request in BetterOff. Routine approval uses a passkey-verified sign-in valid for up to 12 hours; wallet actions also require a wallet signature. Bank requests must be approved by the person who requested them.
+- With the separate bank transfer permission, the tools can prepare bank transfers between the user's own linked accounts. The person who requested each transfer reviews and approves it in BetterOff with a passkey-verified sign-in valid for up to 12 hours.
 <!-- /transfers -->

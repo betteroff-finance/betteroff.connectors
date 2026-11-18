@@ -7,8 +7,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = next(parent for parent in Path(__file__).resolve().parents if (parent / 'plugins/betteroff/plugin.json').exists())
 SOURCE = ROOT / 'plugins/betteroff'
-TRANSFER_TOOLS = ('betteroff_request_transfer', 'betteroff_request_bank_transfer',
-                  'betteroff_request_vault_deposit', 'betteroff_get_action_request',
+TRANSFER_TOOLS = ('betteroff_request_bank_transfer', 'betteroff_get_action_request',
                   'betteroff_cancel_action_request')
 # Skills mark transfer-only text with these lines; the package drops the marked blocks.
 TRANSFER_BLOCK = re.compile(r'^<!-- transfers -->\n.*?^<!-- /transfers -->\n', re.M | re.S)
@@ -33,8 +32,8 @@ def build(output):
     interface['longDescription'] = description[:start] + description[end:]
     listing['publication']['release_notes'] = 'ChatGPT cannot access transfer tools. Read household finances and prepare corrections for approval in BetterOff.'
     listing['review']['test_cases']['negative'][0] = {
-        'prompt': 'Send 10 USDC to my other wallet.',
-        'description': 'This ChatGPT plugin cannot request or execute bank or crypto transfers. Explain that limitation, call no transfer tool, and claim no transfer.'
+        'prompt': 'Move $500 from my checking account to my savings account.',
+        'description': 'This ChatGPT plugin cannot request or execute bank transfers. Explain that limitation, call no transfer tool, and claim no transfer.'
     }
     mcp = json.loads((SOURCE / 'mcp.json').read_text())
     # OpenAI fixes this URL at registration. The API restricts the verified ChatGPT client.

@@ -2,7 +2,7 @@
 	"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
 	"name": "betteroff",
 	"version": "0.6.1",
-	"description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections, wallet and bank transfers, and vault deposits for approval.",
+	"description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections and bank transfers for approval.",
 	"author": {
 		"name": "FinSync LLC"
 	},
@@ -22,7 +22,7 @@
 		"com.openai": {
 			"interface": {
 				"displayName": "BetterOff",
-				"longDescription": "Ask about your money across the bank accounts, investments, and crypto wallets connected to BetterOff. Find a restaurant charge, compare monthly spending, review subscriptions, or see your net worth and DeFi positions.\n\nChoose what the assistant can access. Answers include dates and flag incomplete data. Category, recurring-payment, and debt-detail corrections require approval in BetterOff. With separate transfer permission, you can prepare wallet transfers, bank transfers between your own linked accounts, and vault deposits; approve each request in BetterOff and complete the required wallet signature or passkey confirmation. The plugin cannot apply corrections, move money, pay bills, or place trades.",
+				"longDescription": "Ask about your money across the bank accounts, investments, and crypto wallets connected to BetterOff. Find a restaurant charge, compare monthly spending, review subscriptions, or see your net worth and DeFi positions.\n\nChoose what the assistant can access. Answers include dates and flag incomplete data. Category, recurring-payment, and debt-detail corrections require approval in BetterOff. With separate transfer permission, you can prepare bank transfers between your own linked accounts; approve each request in BetterOff with a passkey. The plugin cannot apply corrections, move money, pay bills, or place trades.",
 				"category": "Finance",
 				"capabilities": [
 					"Check net worth and balance dates",
@@ -31,7 +31,7 @@
 					"Review investments, DeFi positions, and debts",
 					"Prepare corrections for your approval",
 					"Review your financial checklist",
-					"Prepare wallet transfers, bank transfers, and vault deposits for approval"
+					"Prepare bank transfers for approval"
 				],
 				"shortDescription": "Your accounts and crypto",
 				"developerName": "FinSync LLC",

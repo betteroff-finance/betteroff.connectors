@@ -30,7 +30,6 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Observed recurring payments | `betteroff_list_recurring` |
 | Portfolio positions, allocation and concentration | `betteroff_get_portfolio` |
 | DeFi assets and liabilities | `betteroff_get_defi_positions` |
-| Reported vault yields | `betteroff_get_vault_yields` |
 | Financial checklist progress | `betteroff_get_checklist` |
 | Household deadlines and renewals | `betteroff_list_deadlines` |
 | Recorded insurance policies | `betteroff_list_insurance` |
@@ -52,15 +51,13 @@ Describe only tools exposed in the current chat. If no correction or transfer to
 | Send approved diagnostic feedback | `betteroff_submit_feedback` |
 
 <!-- transfers -->
-Transfer request tools need a separate transfer permission:
+Bank transfer request tools need a separate transfer permission:
 
 | Task | Tool |
 | --- | --- |
-| Request a USDC transfer between the household's own wallets | `betteroff_request_transfer` |
 | (Not available yet) Request a bank transfer between the user's own linked accounts | `betteroff_request_bank_transfer` |
-| Request a deposit into a supported vault | `betteroff_request_vault_deposit` |
-| Transfer request status | `betteroff_get_action_request` |
-| Cancel a transfer request before signing | `betteroff_cancel_action_request` |
+| Bank transfer request status | `betteroff_get_action_request` |
+| Cancel a bank transfer request before approval | `betteroff_cancel_action_request` |
 <!-- /transfers -->
 
 ## Interpret results
@@ -117,7 +114,7 @@ Approval checks the current household, role, originating grant, expiry, and sour
 The tools cannot approve or execute transfer requests, pay bills, or place trades. Describe supported financial facts and arithmetic without presenting individualized investment, tax, or legal advice.
 
 <!-- transfers -->
-With the separate `transfers:prepare`, `transfers:bank`, or `transfers:vault` permission, request tools can prepare wallet transfers, bank transfers, or vault deposits respectively. Give the returned review link and say it awaits approval by an authorized user in BetterOff. Routine approval uses a passkey-verified sign-in valid for up to 12 hours; wallet actions also require a wallet signature. Bank requests must be approved by the person who requested them.
+With the separate `transfers:bank` permission, request tools can prepare bank transfers between the user's own linked accounts. Give the returned review link and say it awaits approval in BetterOff by the person who requested it. Approval uses a passkey-verified sign-in valid for up to 12 hours.
 <!-- /transfers -->
 
 ## Send feedback

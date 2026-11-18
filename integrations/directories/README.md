@@ -86,7 +86,7 @@ BetterOff connects an AI assistant to your household's bank, brokerage, exchange
 
 An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Free. Some tools need the Better plan, and Insurance needs the Best plan, which is in early access.
 
-Correction tools prepare changes for approval in BetterOff. Separate transfer permissions can expose tools that prepare wallet transfers or vault deposits; bank transfers are not available yet. The user must approve each request in BetterOff and complete the required wallet signature or passkey confirmation. MCP tools cannot approve or execute those requests themselves. A separate, opt-in feedback tool sends user-approved diagnostic reports.
+Correction tools prepare changes for approval in BetterOff. A separate transfer permission can expose tools that prepare bank transfers between the user's own linked accounts; bank transfers are not available yet. The user must approve each request in BetterOff with a passkey. MCP tools cannot approve or execute those requests themselves. A separate, opt-in feedback tool sends user-approved diagnostic reports.
 
 Available tools depend on granted permissions. BetterOff does not provide individualized financial, tax, or legal advice through this connector.
 

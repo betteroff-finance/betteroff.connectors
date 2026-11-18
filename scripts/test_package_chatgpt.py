@@ -17,25 +17,22 @@ class ChatgptPackageTest(unittest.TestCase):
                 for entry in archive.namelist():
                     if entry.startswith('skills/'):
                         self.assertNotIn('<!-- transfers', archive.read(entry).decode())
-                        self.assertNotIn('prepare wallet transfers', archive.read(entry).decode())
+                        self.assertNotIn('prepare bank transfers', archive.read(entry).decode())
                         for name in TRANSFER_TOOLS:
                             self.assertNotIn(name, archive.read(entry).decode())
                         self.assertNotIn('transfers:bank', archive.read(entry).decode())
-                        self.assertNotIn('transfers:vault', archive.read(entry).decode())
                 manifest = json.loads(archive.read('plugin.json'))
                 listing = manifest['extensions']['com.openai']
                 self.assertEqual(len(listing['review']['test_cases']['positive']), 5)
                 self.assertEqual(len(listing['review']['test_cases']['negative']), 3)
                 self.assertNotIn('With separate transfer permission', listing['interface']['longDescription'])
-                for case in listing['review']['test_cases']['negative']:
-                    self.assertNotIn('Transfer tools cover only USDC', case['description'])
                 skill = archive.read('skills/household-review/SKILL.md').decode()
                 self.assertIn('individualized investment, tax, or legal advice', skill)
                 self.assertIn('DeFi, and prepares corrections for review in BetterOff. Use for general '
                               'financial questions', skill)
                 for name in TRANSFER_TOOLS:
                     self.assertNotIn(name, skill)
-                self.assertNotIn('transfers:prepare', skill)
+                self.assertNotIn('transfers:bank', skill)
         self.assertEqual(before, (SOURCE / 'plugin.json').read_bytes())
 
     def build_with(self, directory, name, text):
@@ -57,7 +54,7 @@ class ChatgptPackageTest(unittest.TestCase):
     def test_transfer_tool_in_unfiltered_file_fails(self):
         with tempfile.TemporaryDirectory() as directory:
             with self.assertRaisesRegex(ValueError, 'unfiltered file'):
-                self.build_with(directory, 'reference.txt', 'Call betteroff_request_transfer.\n')
+                self.build_with(directory, 'reference.txt', 'Call betteroff_request_bank_transfer.\n')
 
 if __name__ == '__main__':
     unittest.main()

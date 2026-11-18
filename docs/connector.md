@@ -18,14 +18,14 @@ Confirm that the result identifies your household and reports observation dates 
 
 ## What the connector can do
 
-Connector package 0.6.1 describes hosted server 0.8.0 and defines up to 40 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
+Connector package 0.6.1 describes hosted server 0.8.0 and defines up to 37 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
 
-- **26 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, budgets, taxes, giving, checklist progress, deadlines, insurance, observations, financial activity, and reported vault yields.
+- **26 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, budgets, taxes, giving, checklist progress, deadlines, insurance, observations, financial activity, and cash rules.
 - **Five correction proposals** cover payment categories, recurring items, debt details, allocation targets, and budgets.
-- **Five transfer request tools** prepare wallet transfers, bank transfers, and vault deposits, read request status, and cancel pending requests. See [transfer permissions](#transfer-permissions). Status is read-only; the other four tools write request records. Bank transfer requests are not available right now.
+- **Three transfer request tools** prepare bank transfers between your own linked accounts, read request status, and cancel pending requests. See [transfer permissions](#transfer-permissions). Status is read-only; the other two tools write request records. Bank transfer requests are not available right now.
 - **One feedback tool**, `betteroff_submit_feedback`, sends diagnostic reports you approve. It requires separate, opt-in `feedback:submit` permission. Reports must exclude financial records, conversation history, tool payloads, and credentials.
 
-The full catalog contains 28 read-only tools and 11 tools that write pending records or feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
+The full catalog contains 28 read-only tools and 9 tools that write pending records or feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
 
 ### Result quality
 
@@ -33,17 +33,15 @@ Each successful financial result reports `schemaVersion: "4"`, currency, observa
 
 ### Transfer permissions
 
-The server defines five transfer request tools. Each needs separate opt-in permission:
+The server defines three bank transfer request tools. Each needs separate opt-in permission:
 
 | Tool | Required scopes | Purpose |
 | --- | --- | --- |
-| `betteroff_request_transfer` | `accounts:read`, `transfers:prepare` | Prepare a USDC transfer between household wallets on Solana |
 | `betteroff_request_bank_transfer` | `accounts:read`, `transfers:bank` | Prepare a bank transfer through Natural between the user's own linked accounts. Not available right now |
-| `betteroff_request_vault_deposit` | `investments:read`, `transfers:vault` | Prepare a deposit into a vault Investing lists |
-| `betteroff_get_action_request` | `transfers:read` | Read request status |
-| `betteroff_cancel_action_request` | Any one of `transfers:prepare`, `transfers:bank`, `transfers:vault` | Cancel a pending request of the kind that permission covers |
+| `betteroff_get_action_request` | `transfers:read` | Read bank transfer request status |
+| `betteroff_cancel_action_request` | `transfers:bank` | Cancel a pending bank transfer request |
 
-Requests never approve, sign, or execute themselves. The user reviews each request in BetterOff and completes the required wallet signature or passkey confirmation. Client-specific restrictions can hide transfer tools even when the general server supports them.
+Requests never approve or execute themselves. The person who requested each transfer reviews and approves it in BetterOff with a passkey. Client-specific restrictions can hide transfer tools even when the general server supports them.
 
 ### Diagnostic feedback
 
