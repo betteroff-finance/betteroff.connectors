@@ -41,6 +41,7 @@ Describe only tools exposed in the current chat. If no correction tools are avai
 | Start a plan checkout | `betteroff_get_checkout_link` |
 | Add a public wallet to track | `betteroff_track_wallet` |
 | Stored financial findings | `betteroff_list_observations` |
+| Chief's weekly list of what to do first | `betteroff_get_chief_list` |
 | The household's agents, schedules and last runs | `betteroff_list_agents` |
 | Start an agent now, such as Chief | `betteroff_run_agent` |
 | An agent run's summary and findings | `betteroff_get_agent_run` |
