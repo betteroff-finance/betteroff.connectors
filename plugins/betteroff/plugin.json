@@ -41,9 +41,9 @@
 				"composerIcon": "./assets/icon.png",
 				"logo": "./assets/icon.png",
 				"defaultPrompt": [
-					"Show my net worth across my accounts and wallets.",
-					"How much have I spent at restaurants in the past three months?",
-					"Show my DeFi assets and debts."
+					"What's my net worth across my accounts and wallets?",
+					"I owe $4,000 on a card at 24% and $12,000 on a car loan at 6.5%. Which do I pay first?",
+					"How much have I spent at restaurants in the past three months?"
 				]
 			},
 			"review": {
