@@ -56,10 +56,10 @@
 							"expected_behavior": "Report stored USD 1,200.75 net worth as of September 1, 2026, and current coverage of four accounts. The stored valuation covers three accounts; do not present it as a live balance."
 						},
 						{
-							"description": "Account balances and freshness. Fixture: four manual accounts with balance dates.",
-							"prompt": "List my accounts with their balances and balance dates.",
-							"tools_triggered": "betteroff_list_accounts",
-							"expected_behavior": "List Review Checking (USD 1,000.75), Review Investments (USD 500.00), Review Credit Card (USD 300.00), and Synthetic Review DeFi (USD 400.00) with their balance dates and source qualifications."
+							"description": "Add an account the user describes. Fixture: the same reviewer household; no account named Ally Savings exists yet.",
+							"prompt": "I have about $5,000 in an Ally savings account. Add it to BetterOff.",
+							"tools_triggered": "betteroff_add_manual_account",
+							"expected_behavior": "Add one manual savings account named Ally Savings with a USD 5,000.00 balance and say it was added. Asking again with the same name returns the existing account instead of a duplicate. Never ask for bank credentials."
 						},
 						{
 							"description": "September 2026 spending. Fixture: USD 175.00 of eligible expenses and a USD 200.00 transfer.",
@@ -68,10 +68,10 @@
 							"expected_behavior": "Report USD 100.00 for Food & Drink and USD 75.00 for Entertainment, totaling USD 175.00. Exclude the transfer."
 						},
 						{
-							"description": "Debt terms and canonical DeFi exposure. Fixture: a USD 300.00 credit card and a lending position with USD 500.00 assets and USD 100.00 liabilities.",
-							"prompt": "List my debts with their available terms, and show my DeFi assets, liabilities, and net value.",
-							"tools_triggered": "betteroff_list_debts, betteroff_get_defi_positions",
-							"expected_behavior": "Report the credit-card balance of USD 300.00, APR 24.99%, minimum payment USD 25.00, and that the card is not overdue. Separately report canonical DeFi assets USD 500.00, liabilities USD 100.00, and net value USD 400.00. Preserve source and coverage qualifications; do not double-count the borrow in net worth."
+							"description": "Debt payoff from debts stated in chat, with nothing saved.",
+							"prompt": "I owe $4,000 on a card at 24% with a $120 minimum, and $12,000 on a car loan at 6.5% with a $300 minimum. With $200 extra a month, which do I pay first and when am I done?",
+							"tools_triggered": "betteroff_simulate_debt_payoff",
+							"expected_behavior": "Pass both debts as stated in the debts input. The result has source stated; recommend paying the card first (avalanche), quote payoffDate and totalInterest from the result, and say the projection used only the numbers given."
 						},
 						{
 							"description": "Category correction. Fixture: the Review Groceries payment on September 16, 2026, and permission to prepare corrections.",
@@ -100,7 +100,9 @@
 				"commerce_description": "BetterOff does not sell products or process payments in ChatGPT. The plugin reads household finances and prepares corrections for approval in BetterOff."
 			},
 			"publication": {
-				"countries": ["US"],
+				"countries": [
+					"US"
+				],
 				"release_notes": "Add skills for spending changes, upcoming bills, and net worth changes. Preserve approval requirements."
 			}
 		}
