@@ -6,6 +6,12 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = next(parent for parent in Path(__file__).resolve().parents if (parent / 'plugins/betteroff/plugin.json').exists())
 SOURCE = ROOT / 'plugins/betteroff'
+CHATGPT_SCOPES = [
+    'openid', 'email', 'offline_access',
+    'accounts:read', 'networth:read', 'cashflow:read', 'investments:read',
+    'transactions:read', 'debts:read', 'checklist:read', 'activity:read',
+    'accounts:manual', 'wallets:track',
+]
 
 
 def build(output):
@@ -13,6 +19,8 @@ def build(output):
     mcp = json.loads((SOURCE / 'mcp.json').read_text())
     # OpenAI fixes this URL at registration. The API restricts the verified ChatGPT client.
     mcp['mcpServers']['betteroff']['url'] = 'https://api.betteroff.finance/mcp'
+    # The scopes ChatGPT requests. No transfers:* scope; no tool can move money.
+    mcp['mcpServers']['betteroff']['extensions'] = {'com.openai': {'auth': {'type': 'oauth', 'baseScopes': CHATGPT_SCOPES}}}
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     with ZipFile(output, 'w', ZIP_DEFLATED) as archive:
