@@ -18,14 +18,15 @@ Confirm that the result identifies your household and reports observation dates 
 
 ## What the connector can do
 
-Connector package 0.6.1 describes hosted server 0.8.5 and defines up to 32 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
+Connector package 0.6.1 describes hosted server 0.8.5 and defines up to 35 tools; clients see only the tools allowed by their permissions. The [tool reference](tools.md) lists each tool's access and scopes:
 
 - **25 financial reads and analyses** cover setup status, accounts, net worth, cash flow, recurring items, holdings, transactions, spending, debts, budgets, taxes, giving, checklist progress, deadlines, observations, financial activity, cash rules, and plan checkout links.
 - **Five correction proposals** cover payment categories, recurring items, debt details, allocation targets, and budgets.
 - **One wallet tool**, `betteroff_track_wallet`, adds a public wallet address you provide so BetterOff tracks its balances. It requires separate, opt-in `wallets:track` permission and cannot sign or move funds.
+- **Three agent tools** list your BetterOff agents (`betteroff_list_agents`), start one now (`betteroff_run_agent`), and read its summary and findings when it finishes (`betteroff_get_agent_run`). An agent reads data, files findings, and prepares corrections for you to approve; it never moves money or sends anything. Each agent runs at most once per ten minutes on demand, and an agent your plan does not include returns `PLAN_REQUIRED` with a link to start a Plus trial. Starting a run takes a household owner or admin.
 - **One feedback tool**, `betteroff_submit_feedback`, sends diagnostic reports you approve. It requires separate, opt-in `feedback:submit` permission. Reports must exclude financial records, conversation history, tool payloads, and credentials.
 
-The full catalog contains 25 read-only tools and 7 tools that write pending records, add a tracked wallet, or send feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
+The full catalog contains 27 read-only tools and 8 tools that write pending records, add a tracked wallet, start an agent run, or send feedback. Reconnect BetterOff when you need to request a permission missing from your existing connection.
 
 ### Result quality
 

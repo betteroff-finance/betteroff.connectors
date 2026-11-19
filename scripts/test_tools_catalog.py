@@ -168,7 +168,7 @@ class ToolCatalogTests(unittest.TestCase):
         self.assertIn(f'README.md must state "{count} tools"', check(self.root))
 
     def test_render_counts_tools(self):
-        self.assertIn('32 tools: 25 read tools and 7 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
+        self.assertIn('35 tools: 27 read tools and 8 write tools', render(json.loads((ROOT / 'tools.json').read_text())))
 
 
     def test_live_skill_input_drift_fails(self):

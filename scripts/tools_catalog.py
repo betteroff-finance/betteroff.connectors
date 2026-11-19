@@ -42,7 +42,7 @@ def render(catalog):
 Connector package {catalog['version']} describes hosted server {catalog['serverVersion']} at `{catalog['server']}` and defines {len(tools)} tools: {len(tools) - writes} read tools and {writes} write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
-- **Write** tools save a pending correction, add a public wallet address to track, or send feedback. None can apply a correction or move money. You approve corrections in BetterOff. Wallet tracking and feedback take effect when called.
+- **Write** tools save a pending correction, add a public wallet address to track, start one of your BetterOff agents, or send feedback. None can apply a correction or move money. You approve corrections in BetterOff. Wallet tracking, agent runs, and feedback take effect when called.
 - Tools work on every plan, including Core, over MCP or REST. Plus-only tools return `CORE_REQUIRED` on Core.
 
 The same catalog is available as [tools.json](../tools.json). With an API token, call any tool at `POST https://api.betteroff.finance/v1/tools/{{name}}`; see the [developer documentation](https://betteroff.finance/developers) and the [tool OpenAPI document]({catalog['openapi']}).

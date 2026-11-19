@@ -5,10 +5,10 @@
 
 [All clients](../README.md#install-the-connector) · [Connector reference](connector.md)
 
-Connector package 0.6.1 describes hosted server 0.8.5 at `https://api.betteroff.finance/mcp` and defines 32 tools: 25 read tools and 7 write tools. A client sees only the tools its granted scopes allow.
+Connector package 0.6.1 describes hosted server 0.8.5 at `https://api.betteroff.finance/mcp` and defines 35 tools: 27 read tools and 8 write tools. A client sees only the tools its granted scopes allow.
 
 - **Read** tools return data and change nothing.
-- **Write** tools save a pending correction, add a public wallet address to track, or send feedback. None can apply a correction or move money. You approve corrections in BetterOff. Wallet tracking and feedback take effect when called.
+- **Write** tools save a pending correction, add a public wallet address to track, start one of your BetterOff agents, or send feedback. None can apply a correction or move money. You approve corrections in BetterOff. Wallet tracking, agent runs, and feedback take effect when called.
 - Tools work on every plan, including Core, over MCP or REST. Plus-only tools return `CORE_REQUIRED` on Core.
 
 The same catalog is available as [tools.json](../tools.json). With an API token, call any tool at `POST https://api.betteroff.finance/v1/tools/{name}`; see the [developer documentation](https://betteroff.finance/developers) and the [tool OpenAPI document](https://api.betteroff.finance/openapi/tools.json).
@@ -39,6 +39,9 @@ The same catalog is available as [tools.json](../tools.json). With an API token,
 | `betteroff_get_giving_and_fees` | Read | `transactions:read` | Yearly charitable giving, personal gifts, bank fees, and investment fees. |
 | `betteroff_search_activity` | Read | `activity:read` | Recorded financial record changes and correction proposals. |
 | `betteroff_list_observations` | Read | `accounts:read`, `networth:read`, `transactions:read`, `cashflow:read`, `investments:read`, `debts:read` | Stored financial findings and their status. |
+| `betteroff_list_agents` | Read | `accounts:read`, `networth:read`, `transactions:read`, `cashflow:read`, `investments:read`, `debts:read` | The household's agents: what each does, its schedule, whether the plan includes it, and its last run. |
+| `betteroff_run_agent` | Write | `accounts:read`, `networth:read`, `transactions:read`, `cashflow:read`, `investments:read`, `debts:read` | Starts an agent now and returns its run id. One run per agent per ten minutes; agents the plan does not include return the Plus trial link. |
+| `betteroff_get_agent_run` | Read | `accounts:read`, `networth:read`, `transactions:read`, `cashflow:read`, `investments:read`, `debts:read` | One agent run's status, summary, and the findings it filed. |
 | `betteroff_propose_category_change` | Write | `transactions:read`, `corrections:prepare` | Saves a pending category correction for approval in BetterOff. |
 | `betteroff_propose_recurring_kind` | Write | `cashflow:read`, `corrections:prepare` | Saves a pending bill-or-subscription classification for approval in BetterOff. |
 | `betteroff_propose_debt_details` | Write | `debts:read`, `corrections:prepare` | Saves user-stated debt terms for approval in BetterOff. |
