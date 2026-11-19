@@ -12,10 +12,10 @@ Recorded October 13, 2026; the ChatGPT row was updated November 2, 2026, and eve
 
 | Destination | Status | Next step |
 | --- | --- | --- |
-| [Official MCP Registry](#official-mcp-registry) | Published as `finance.betteroff/mcp` | Publish [server.json](server.json) with a new version for each change |
+| [Official MCP Registry](#official-mcp-registry) | Published as `finance.betteroff/mcp`. [server.json](server.json) 0.5.4 (Chief description) is not yet published | Publish 0.5.4 through the Registry API with DNS login |
 | Official MCP Registry, `finance.betteroff/public` | Deprecated October 29, 2026 at 08:13:51 UTC. Its remote `https://betteroff.finance/mcp` redirects to `/agents`, so connections failed. Glama copied this entry | Ask Glama to drop its copy |
 | [Smithery](#smithery) | Page returns Not found. Smithery ended its proxy and accounts October 31, 2026 | Recheck whether it lists direct URLs |
-| [Claude connector directory](#chatgpt-and-claude-connector-directories) | Not submitted | Submit through the developer portal |
+| [Claude connector directory](#chatgpt-and-claude-connector-directories) | Not submitted. Copy refreshed November 19, 2026 for Chief and the agent tools | Submit through the developer portal (owner action) |
 | Claude plugin directory | Published; an update is in review | None |
 | [ChatGPT directory](#chatgpt-and-claude-connector-directories) | Published and listed publicly; version 0.5.2 published November 2, 2026 from the OpenAI Plugins page | None |
 | [Glama](#glama) | Listed by Registry import | Maintainer follow-up |
@@ -34,6 +34,8 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 2. Add the server as a custom connector in Claude and call each tool with a synthetic household.
 3. Prepare reviewer credentials for a fully populated synthetic household. Enter them only in the portal.
 4. Complete the seven compliance acknowledgments, including financial transactions and prompt injection. Use the [shared listing copy](#shared-listing-copy).
+5. Confirm the four agent tools (`betteroff_get_chief_list`, `betteroff_list_agents`, `betteroff_run_agent`, `betteroff_get_agent_run`) on a Plus synthetic household, and that a free household gets `PLAN_REQUIRED` with a trial link from `betteroff_run_agent` for any agent but Scout. `betteroff_run_agent` is not read-only: it starts a run, which files findings to To-Do.
+6. For ChatGPT, rebuild the package with the same copy and publish a new version from the OpenAI Plugins page.
 
 Claude Code plugin tests do not verify this destination. Source: [Submit a connector to the directory](https://claude.com/docs/connectors/building/submission), reviewed October 13, 2026.
 
@@ -63,7 +65,7 @@ Use these fields for directory submissions. The official Registry entry is publi
 | --- | --- |
 | Display name | BetterOff |
 | Publisher | FinSync LLC |
-| Short description | Read bank, brokerage, exchange, and wallet accounts; prepare changes for approval. |
+| Short description | Chief and six AI agents check your accounts for fees and tax savings. You approve every change. |
 | Suggested categories | Finance; Personal finance; Productivity. Select only categories the destination actually offers. |
 | Homepage | https://betteroff.finance |
 | User documentation | https://betteroff.finance/agents |
@@ -82,20 +84,23 @@ Use these fields for directory submissions. The official Registry entry is publi
 
 ### Full description
 
-BetterOff connects an AI assistant to your household's bank, brokerage, exchange, and wallet accounts. Review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Ask for a household overview, review a month of spending, or identify recurring subscriptions. Results include dates, source status, and incomplete-data warnings.
+BetterOff puts Chief and six AI agents inside your AI assistant. Chief reads what every agent found across your bank, brokerage, exchange, and wallet accounts and tells you the three things to do first this week. Ask Chief what matters, or send one agent to check something now: Scout looks for fees, price hikes, and double charges; Bookkeeper fixes categories and recurring charges; Forecaster warns before a balance runs low; Coach checks goals, savings rate, and debt; Taxman finds losses to harvest and room in retirement accounts; Negotiator drafts the email when insurance renews.
 
-An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan, including Core. Some tools need the Plus plan.
+You can also review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Results include dates, source status, and incomplete-data warnings.
 
-Correction tools prepare changes for approval in BetterOff. MCP tools cannot approve or apply those changes, or move money. A separate, opt-in feedback tool sends user-approved diagnostic reports.
+An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan. Scout is free; Chief and the other agents come with Plus, which starts with a 14-day free trial. An agent the plan does not include returns a trial link instead of a result.
+
+Agents read data, file findings, and prepare corrections. Correction tools prepare changes for approval in BetterOff. MCP tools cannot approve or apply those changes, send anything on the user's behalf, or move money. A separate, opt-in feedback tool sends user-approved diagnostic reports.
 
 Available tools depend on granted permissions. BetterOff does not provide individualized financial, tax, or legal advice through this connector.
 
 ### Example prompts
 
+- Ask Chief what I should do first this week.
+- Have Scout check my subscriptions for price hikes and double charges.
+- Send Taxman to look for tax losses I can harvest before December 31.
+- Will my checking balance run low before payday?
 - Show my household overview and flag missing or out-of-date data.
-- Review my spending and cash flow for the last complete month.
-- Review recurring charges and identify bills and subscriptions.
-- Summarize my investment allocation and concentration.
 - Find payments that may be miscategorized and prepare corrections for review.
 
 ### Reviewer setup notes
