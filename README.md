@@ -36,7 +36,7 @@ Connect your AI client to [BetterOff](https://betteroff.finance/github) to revie
 ## Before you start
 
 - **Account:** You need a BetterOff household owner account and a client listed below. To ask about your finances, first connect a supported financial account or wallet in BetterOff.
-- **Plan:** Tools work on every plan, including Core, over MCP or REST. Some tools need the Plus plan and return `CORE_REQUIRED` on Core.
+- **Plan:** BetterOff has one plan, Plus. It starts with a 7-day free trial, and a card is required. Without a trial, subscription or comp the household is read-only, and tools that need Plus return `CORE_REQUIRED`. The same applies over MCP and REST.
 - **Consent:** Every household member must turn on **Chat data access** in BetterOff settings, and you must accept the applicable BetterOff Terms. Your connected client receives the data that each tool returns.
 - **Approval:** The connector prepares corrections for your review. It cannot apply a correction or move money.
 

@@ -34,7 +34,7 @@ The independent production lifecycle test passed: scoped sign-in, discovery, rea
 2. Add the server as a custom connector in Claude and call each tool with a synthetic household.
 3. Prepare reviewer credentials for a fully populated synthetic household. Enter them only in the portal.
 4. Complete the seven compliance acknowledgments, including financial transactions and prompt injection. Use the [shared listing copy](#shared-listing-copy).
-5. Confirm the four agent tools (`betteroff_get_chief_list`, `betteroff_list_agents`, `betteroff_run_agent`, `betteroff_get_agent_run`) on a Plus synthetic household, and that a free household gets `PLAN_REQUIRED` with a trial link from `betteroff_run_agent` for any agent but Scout. `betteroff_run_agent` is not read-only: it starts a run, which files findings to To-Do.
+5. Confirm the four agent tools (`betteroff_get_chief_list`, `betteroff_list_agents`, `betteroff_run_agent`, `betteroff_get_agent_run`) on a Plus synthetic household, and that a household with no plan gets `PLAN_REQUIRED` with a trial link from `betteroff_run_agent` for every agent. `betteroff_run_agent` is not read-only: it starts a run, which files findings to To-Do.
 6. For ChatGPT, rebuild the package with the same copy and publish a new version from the OpenAI Plugins page.
 
 Claude Code plugin tests do not verify this destination. Source: [Submit a connector to the directory](https://claude.com/docs/connectors/building/submission), reviewed October 13, 2026.
@@ -88,7 +88,7 @@ BetterOff puts Chief and six AI agents inside your AI assistant. Chief reads wha
 
 You can also review balances, net worth, spending, cash flow, recurring charges, investments, and debt. Results include dates, source status, and incomplete-data warnings.
 
-An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. Tools work on every plan. Scout is free; Chief and the other agents come with Plus, which starts with a 14-day free trial. An agent the plan does not include returns a trial link instead of a result.
+An eligible BetterOff household owner signs in and chooses permissions. All household members must consent to AI processing, and the owner must accept the applicable Terms. Financial information returned by tools is shared with the connected client. BetterOff has one plan, Plus, which starts with a 7-day free trial. Without a trial, subscription or comp the household is read-only, and every agent returns a trial link instead of a result.
 
 Agents read data, file findings, and prepare corrections. Correction tools prepare changes for approval in BetterOff. MCP tools cannot approve or apply those changes, send anything on the user's behalf, or move money. A separate, opt-in feedback tool sends user-approved diagnostic reports.
 

@@ -1,7 +1,7 @@
 {
   "name": "betteroff",
   "interface": {
-    "displayName": "BetterOff"
+    "displayName": "Better Off"
   },
   "plugins": [
     {

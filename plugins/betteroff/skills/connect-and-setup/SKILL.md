@@ -1,9 +1,9 @@
 ---
 name: connect-and-setup
-description: Checks BetterOff setup and connection health and directs the user to the fix. Use when the user asks what is left to set up, why data is missing or stale, why an account does not appear, or how to reconnect an institution.
+description: Checks Better Off setup and connection health and directs the user to the fix. Use when the user asks what is left to set up, why data is missing or stale, why an account does not appear, or how to reconnect an institution.
 ---
 
-# BetterOff setup and connections
+# Better Off setup and connections
 
 The user's explicit instructions take priority over this skill. When the `household-review` skill is installed, use it for tool details beyond this workflow.
 
@@ -19,11 +19,11 @@ The user's explicit instructions take priority over this skill. When the `househ
 - After a failed call, read `code` and `retryable`. Retry a retryable failure once, respecting any returned retry delay. Do not repeat a terminal failure with unchanged arguments.
   - `INVALID_INPUT`: correct the named `field` or `fields` using the tool schema.
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
-  - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
+  - `INSUFFICIENT_SCOPE`: tell the user to reconnect Better Off with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
   - `CORE_REQUIRED`: this tool needs the Plus plan; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
-  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
-  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
+  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in Better Off settings. Stop reading until the user confirms the change.
+  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect Better Off; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
 - The tools cannot move money, pay bills, or place trades. Do not give individualized investment, tax, or legal advice.
 
@@ -41,7 +41,7 @@ Name one fix at a time, starting with the first blocking step:
 - `connect_accounts`: no supported account or wallet is connected yet.
 - `fix_connections`: a connection needs attention. `reauth_required` means reconnect the institution; `account_selection_required` means choose which accounts to share.
 
-For a missing account, ask which institution it belongs to. Do not guess whether BetterOff supports it.
+For a missing account, ask which institution it belongs to. Do not guess whether Better Off supports it.
 
 After the user completes the fix, call `betteroff_get_setup_status` again. Continue to accounts and overview only when the blocker is resolved. State data coverage, freshness, and any partial results before calling setup complete.
 
@@ -49,4 +49,4 @@ For missing tool permissions, name the permission from the `INSUFFICIENT_SCOPE` 
 
 ## Limits
 
-The tools cannot connect, reconnect, or remove an institution. The user completes each fix in BetterOff. A fetched or last-sync time can be later than the institution's own data.
+The tools cannot connect, reconnect, or remove an institution. The user completes each fix in Better Off. A fetched or last-sync time can be later than the institution's own data.

@@ -1,9 +1,9 @@
 ---
 name: spending-changes
-description: Reports what changed in BetterOff spending: category drift, unusual charges, and new recurring charges. Use when the user asks where their money went, why spending went up, what changed this month, or where they could spend less.
+description: Reports what changed in Better Off spending: category drift, unusual charges, and new recurring charges. Use when the user asks where their money went, why spending went up, what changed this month, or where they could spend less.
 ---
 
-# BetterOff spending changes
+# Better Off spending changes
 
 The user's explicit instructions take priority over this skill. When the `household-review` skill is installed, use it for tool details beyond this workflow.
 
@@ -19,11 +19,11 @@ The user's explicit instructions take priority over this skill. When the `househ
 - After a failed call, read `code` and `retryable`. Retry a retryable failure once, respecting any returned retry delay. Do not repeat a terminal failure with unchanged arguments.
   - `INVALID_INPUT`: correct the named `field` or `fields` using the tool schema.
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
-  - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
+  - `INSUFFICIENT_SCOPE`: tell the user to reconnect Better Off with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
   - `CORE_REQUIRED`: this tool needs the Plus plan; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
-  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
-  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
+  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in Better Off settings. Stop reading until the user confirms the change.
+  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect Better Off; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
 - The tools cannot move money, pay bills, or place trades. Do not give individualized investment, tax, or legal advice.
 

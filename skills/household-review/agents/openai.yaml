@@ -6,6 +6,6 @@ dependencies:
   tools:
     - type: "mcp"
       value: "betteroff"
-      description: "BetterOff MCP server"
+      description: "Better Off MCP server"
       transport: "streamable_http"
       url: "https://api.betteroff.finance/mcp"

@@ -1,9 +1,9 @@
 ---
 name: financial-checkup
-description: Reviews the household's BetterOff readiness checklist and ranks the next steps. Use when the user asks what to do next with their finances, how prepared the household is, or about insurance, estate documents, an emergency fund, or credit freezes.
+description: Reviews the household's Better Off readiness checklist and ranks the next steps. Use when the user asks what to do next with their finances, how prepared the household is, or about insurance, estate documents, an emergency fund, or credit freezes.
 ---
 
-# BetterOff financial checkup
+# Better Off financial checkup
 
 The user's explicit instructions take priority over this skill. When the `household-review` skill is installed, use it for tool details beyond this workflow.
 
@@ -19,11 +19,11 @@ The user's explicit instructions take priority over this skill. When the `househ
 - After a failed call, read `code` and `retryable`. Retry a retryable failure once, respecting any returned retry delay. Do not repeat a terminal failure with unchanged arguments.
   - `INVALID_INPUT`: correct the named `field` or `fields` using the tool schema.
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
-  - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
+  - `INSUFFICIENT_SCOPE`: tell the user to reconnect Better Off with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
   - `CORE_REQUIRED`: this tool needs the Plus plan; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
-  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
-  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
+  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in Better Off settings. Stop reading until the user confirms the change.
+  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect Better Off; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
 - The tools cannot move money, pay bills, or place trades. Do not give individualized investment, tax, or legal advice.
 
@@ -36,7 +36,7 @@ The user's explicit instructions take priority over this skill. When the `househ
 
 1. List the items with status `open` or `due_again`, ordered by `addsPoints` from highest to lowest. For each, give the `label`, the `why`, the points it adds, and its `link` when present.
 2. For `due_again` items, say the item was done before and its review interval has passed. Give `lastDone` when present.
-3. For `looks_done_confirm` items, say that connected data suggests the item is done and that the user confirms it in BetterOff. Until confirmed, the item earns half its points.
+3. For `looks_done_confirm` items, say that connected data suggests the item is done and that the user confirms it in Better Off. Until confirmed, the item earns half its points.
 4. When `lostEvidence` is present, say that an earlier finding no longer appears and the user should check it.
 5. Skip `done` and `not_applicable` items unless the user asks. When asked, give `notApplicableReason`.
 
@@ -46,4 +46,4 @@ Insurance status is recorded evidence from payments, not verified coverage. Say 
 
 Do not recommend buying a specific insurance policy, provider, or financial product. Describe the type of protection the item covers.
 
-The tools cannot change the checklist. The user marks items done, not applicable, or assigned in BetterOff at `pageUrl`.
+The tools cannot change the checklist. The user marks items done, not applicable, or assigned in Better Off at `pageUrl`.

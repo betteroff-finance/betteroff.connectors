@@ -9,7 +9,7 @@ Connector package 0.6.1 describes hosted server 0.8.5 at `https://api.betteroff.
 
 - **Read** tools return data and change nothing.
 - **Write** tools save a pending correction, add a public wallet address to track, start one of your BetterOff agents, or send feedback. None can apply a correction or move money. You approve corrections in BetterOff. Wallet tracking, agent runs, and feedback take effect when called.
-- Tools work on every plan, including Core, over MCP or REST. Plus-only tools return `CORE_REQUIRED` on Core.
+- BetterOff has one plan, Plus (7-day free trial, card required). Without a trial, subscription or comp the household is read-only, and tools that need Plus return `CORE_REQUIRED`, over MCP or REST.
 
 The same catalog is available as [tools.json](../tools.json). With an API token, call any tool at `POST https://api.betteroff.finance/v1/tools/{name}`; see the [developer documentation](https://betteroff.finance/developers) and the [tool OpenAPI document](https://api.betteroff.finance/openapi/tools.json).
 
