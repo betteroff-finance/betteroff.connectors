@@ -18,7 +18,7 @@ def build(output):
     with ZipFile(output, 'w', ZIP_DEFLATED) as archive:
         archive.writestr('plugin.json', json.dumps(manifest, indent=2) + '\n')
         archive.writestr('mcp.json', json.dumps(mcp, indent=2) + '\n')
-        archive.writestr('README.md', '# Better Off for ChatGPT\n\nRead household finances and prepare corrections for approval in Better Off.\n')
+        archive.writestr('README.md', '# BetterOff for ChatGPT\n\nRead household finances and prepare corrections for approval in BetterOff.\n')
         for path in sorted(SOURCE.rglob('*')):
             relative = path.relative_to(SOURCE)
             if path.is_file() and relative.parts[0] in ('skills', 'assets'):

@@ -1,13 +1,13 @@
 ---
 name: household-review
-description: Answers direct questions about Better Off accounts, balances, net worth, transactions, cash flow, and DeFi, and prepares corrections for review in Better Off. Use for general financial questions; use the specialist skills for monthly reviews, spending changes, upcoming bills, net worth changes, subscription audits, portfolio checks, debt payoff comparisons, category cleanup, financial checkups, or connection problems.
+description: Answers direct questions about BetterOff accounts, balances, net worth, transactions, cash flow, and DeFi, and prepares corrections for review in BetterOff. Use for general financial questions; use the specialist skills for monthly reviews, spending changes, upcoming bills, net worth changes, subscription audits, portfolio checks, debt payoff comparisons, category cleanup, financial checkups, or connection problems.
 ---
 
-# Better Off household review
+# BetterOff household review
 
 Use the shared `betteroff_` tools. The user's explicit instructions take priority over this skill. Read the returned `ok`, `quality`, `warnings`, `currency`, `asOf`, `evidence`, and `page` before making a financial claim. An error is not an empty result. Unknown amounts are not zero.
 
-A tool that the connection lacks permission for may be hidden, or it may return `INSUFFICIENT_SCOPE` naming the permission. Tell the user to reconnect Better Off and grant that permission.
+A tool that the connection lacks permission for may be hidden, or it may return `INSUFFICIENT_SCOPE` naming the permission. Tell the user to reconnect BetterOff and grant that permission.
 
 Describe only tools exposed in the current chat. If no correction tools are available, say this connection's financial access is read-only. Tool restrictions reduce risk but do not establish end-to-end security.
 
@@ -51,9 +51,9 @@ Describe only tools exposed in the current chat. If no correction tools are avai
 ## Interpret results
 
 1. State the currency and observation date. Account amounts may use different currencies; never add them without a supported conversion.
-2. Name accounts by `displayName`, which ends with the account mask when one exists. `balanceAsOfSource` says where `balanceAsOf` came from: `institution` is the institution's own time, `fetched` is when Better Off fetched the balance, and `last_sync` is the connection's last successful sync. A `fetched` or `last_sync` time can be later than the institution's data.
-3. Use the overview `identity` (masked login and household name) when the user asks which Better Off account this connection reads.
-4. Read `connectionHealth.status` for the one fix to name: `reauth_required` means reconnect, and `account_selection_required` means select accounts to share in Better Off.
+2. Name accounts by `displayName`, which ends with the account mask when one exists. `balanceAsOfSource` says where `balanceAsOf` came from: `institution` is the institution's own time, `fetched` is when BetterOff fetched the balance, and `last_sync` is the connection's last successful sync. A `fetched` or `last_sync` time can be later than the institution's data.
+3. Use the overview `identity` (masked login and household name) when the user asks which BetterOff account this connection reads.
+4. Read `connectionHealth.status` for the one fix to name: `reauth_required` means reconnect, and `account_selection_required` means select accounts to share in BetterOff.
 5. Read `quality.state`: `complete`, `partial`, or `unavailable`. For `partial` or `unavailable`, read `quality.reasons` and state them.
 6. `asOf` is the valuation date or the oldest record time. It is null when any row lacks a time; then cite row-level dates instead.
 7. In `betteroff_search_transactions` summaries, positive amounts are outflows (`signConvention: positive_is_outflow`). Quote `totalSpent` for spending, `totalReceived` for income, and `netAmount` for net flow.
@@ -73,10 +73,10 @@ Read `code` and `retryable` before calling again. Never interpret a failed looku
 - For `INSUFFICIENT_SCOPE`, tell the user to reconnect with the required permission.
 - For `INCOMPLETE_DATA`, name the missing inputs and follow the returned next step.
 - For `CORE_REQUIRED`, tell the user that this tool needs the Plus plan, while the other tools work on every plan, and give the returned `nextStep`. Do not retry or substitute other reads for the missing data.
-- `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in Better Off settings. Stop reading until the user confirms the change.
-- `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect Better Off; do not switch credentials or channels to bypass it.
+- `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
+- `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
-- Retry a retryable failure once, respecting any returned retry delay. If it fails again, state the limitation and direct the user to Better Off.
+- Retry a retryable failure once, respecting any returned retry delay. If it fails again, state the limitation and direct the user to BetterOff.
 - Do not repeat a terminal failure with unchanged arguments.
 
 ## Transaction descriptions and purchase details
@@ -87,13 +87,13 @@ Transaction records do not provide itemized Amazon purchases. Check for an avail
 
 ## Prepare corrections
 
-Use only values the user supplied. Proposal tools persist a review record but do not change financial records. Give the returned review link. The user must sign in and approve in Better Off.
+Use only values the user supplied. Proposal tools persist a review record but do not change financial records. Give the returned review link. The user must sign in and approve in BetterOff.
 
 - `betteroff_propose_category_change` takes transaction ids from `betteroff_search_transactions`.
 - `betteroff_propose_recurring_kind` takes the `streamId` from `betteroff_list_recurring`.
 - `betteroff_propose_debt_details` takes the `debtId` from `betteroff_list_debts`. Use the debt's `displayName` only when no `debtId` is available. If more than one debt could match, ask the user which one.
 
-When `betteroff_simulate_debt_payoff` refuses with `missingInputs`, ask the user for missing APRs or minimum payments, then prepare `betteroff_propose_debt_details` only for supported terms they supply. Send null for unchanged required fields. Missing balances or currency conversions require resolving the source data in Better Off; debt-detail proposals cannot supply them. Rerun the simulation only after approval and resolution of all remaining missing inputs.
+When `betteroff_simulate_debt_payoff` refuses with `missingInputs`, ask the user for missing APRs or minimum payments, then prepare `betteroff_propose_debt_details` only for supported terms they supply. Send null for unchanged required fields. Missing balances or currency conversions require resolving the source data in BetterOff; debt-detail proposals cannot supply them. Rerun the simulation only after approval and resolution of all remaining missing inputs.
 
 Category review offers two choices: selected payments only; or selected payments, other matching payments, and future matching payments. Existing manual choices on other payments remain unchanged. Payee rules also restrict payment amount and currency. Do not describe a separate future-only choice.
 
@@ -104,7 +104,7 @@ The tools cannot move money, pay bills, or place trades. Describe supported fina
 ## Send feedback
 
 Call `betteroff_submit_feedback` only when the user requests or approves sending
-that diagnostic report to Better Off support. Show the proposed report text before
+that diagnostic report to BetterOff support. Show the proposed report text before
 asking for approval when the user has not already approved it. Feedback requires
 the separate `feedback:submit` permission; reconnect to opt in if it is absent.
 

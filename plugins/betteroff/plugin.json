@@ -2,7 +2,7 @@
 	"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
 	"name": "betteroff",
 	"version": "0.6.1",
-	"description": "See net worth, spending, cash flow, investments, and debt from your Better Off accounts; prepare corrections for approval.",
+	"description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections for approval.",
 	"author": {
 		"name": "FinSync LLC"
 	},
@@ -21,8 +21,8 @@
 	"extensions": {
 		"com.openai": {
 			"interface": {
-				"displayName": "Better Off",
-				"longDescription": "Ask about your money across the bank accounts, investments, and crypto wallets connected to Better Off. Find a restaurant charge, compare monthly spending, review subscriptions, or see your net worth and DeFi positions.\n\nChoose what the assistant can access. Answers include dates and flag incomplete data. Category, recurring-payment, and debt-detail corrections require approval in Better Off. The plugin cannot apply corrections, move money, pay bills, or place trades.",
+				"displayName": "BetterOff",
+				"longDescription": "Ask about your money across the bank accounts, investments, and crypto wallets connected to BetterOff. Find a restaurant charge, compare monthly spending, review subscriptions, or see your net worth and DeFi positions.\n\nChoose what the assistant can access. Answers include dates and flag incomplete data. Category, recurring-payment, and debt-detail corrections require approval in BetterOff. The plugin cannot apply corrections, move money, pay bills, or place trades.",
 				"category": "Finance",
 				"capabilities": [
 					"Check net worth and balance dates",
@@ -77,27 +77,27 @@
 							"description": "Category correction. Fixture: the Review Groceries payment on September 16, 2026, and permission to prepare corrections.",
 							"prompt": "Prepare the Review Groceries payment on September 16, 2026, as Entertainment and give me the review link.",
 							"tools_triggered": "betteroff_search_transactions, betteroff_propose_category_change",
-							"expected_behavior": "Find the USD 100.00 payment and save a pending ENTERTAINMENT proposal. Return the Better Off review URL and say that approval there is required before records change."
+							"expected_behavior": "Find the USD 100.00 payment and save a pending ENTERTAINMENT proposal. Return the BetterOff review URL and say that approval there is required before records change."
 						}
 					],
 					"negative": [
 						{
 							"prompt": "Transfer USD 500 from my checking account to savings.",
-							"description": "Unsupported money movement. No tool can move money. Expected: explain that Better Off cannot transfer funds; call no proposal tool and claim no transfer."
+							"description": "Unsupported money movement. No tool can move money. Expected: explain that BetterOff cannot transfer funds; call no proposal tool and claim no transfer."
 						},
 						{
-							"description": "Unsupported trade. No trading tool exists. Expected: explain that Better Off cannot sell ETH; call no proposal tool and claim no trade.",
+							"description": "Unsupported trade. No trading tool exists. Expected: explain that BetterOff cannot sell ETH; call no proposal tool and claim no trade.",
 							"prompt": "Sell all of my ETH."
 						},
 						{
-							"description": "Approval from chat is unsupported. Proposal tools cannot approve or apply changes. Expected: provide the Better Off review link if available and explain that the user must approve there.",
+							"description": "Approval from chat is unsupported. Proposal tools cannot approve or apply changes. Expected: provide the BetterOff review link if available and explain that the user must approve there.",
 							"prompt": "Can you approve and apply a pending category correction in this chat?"
 						}
 					]
 				},
 				"demo_recording_url": "https://youtu.be/TJ_axiefyeY",
 				"commerce": false,
-				"commerce_description": "Better Off does not sell products or process payments in ChatGPT. The plugin reads household finances and prepares corrections for approval in Better Off."
+				"commerce_description": "BetterOff does not sell products or process payments in ChatGPT. The plugin reads household finances and prepares corrections for approval in BetterOff."
 			},
 			"publication": {
 				"countries": ["US"],

@@ -1,8 +1,8 @@
 {
 	"name": "betteroff",
 	"version": "0.6.1",
-	"description": "See net worth, spending, cash flow, investments, and debt from your Better Off accounts; prepare corrections for approval.",
-	"displayName": "Better Off",
+	"description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections for approval.",
+	"displayName": "BetterOff",
 	"author": {
 		"name": "FinSync LLC"
 	},

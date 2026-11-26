@@ -1,6 +1,6 @@
 {
   "name": "betteroff",
-  "description": "Better Off connectors for reading household finances and preparing corrections for approval in Better Off.",
+  "description": "BetterOff connectors for reading household finances and preparing corrections for approval in BetterOff.",
   "owner": {
     "name": "FinSync LLC"
   },
@@ -11,7 +11,7 @@
         "type": "local",
         "path": "./plugins/betteroff"
       },
-      "description": "See net worth, spending, cash flow, investments, and debt from your Better Off accounts; prepare corrections for approval.",
+      "description": "See net worth, spending, cash flow, investments, and debt from your BetterOff accounts; prepare corrections for approval.",
       "category": "finance",
       "homepage": "https://betteroff.finance",
       "keywords": [

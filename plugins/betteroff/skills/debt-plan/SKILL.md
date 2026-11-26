@@ -1,9 +1,9 @@
 ---
 name: debt-plan
-description: Compares Better Off debt payoff scenarios and collects missing debt terms for approval. Use when the user asks how to pay off debt, when they will be debt-free, avalanche versus snowball, or the effect of paying extra each month.
+description: Compares BetterOff debt payoff scenarios and collects missing debt terms for approval. Use when the user asks how to pay off debt, when they will be debt-free, avalanche versus snowball, or the effect of paying extra each month.
 ---
 
-# Better Off debt plan
+# BetterOff debt plan
 
 The user's explicit instructions take priority over this skill. When the `household-review` skill is installed, use it for tool details beyond this workflow.
 
@@ -19,11 +19,11 @@ The user's explicit instructions take priority over this skill. When the `househ
 - After a failed call, read `code` and `retryable`. Retry a retryable failure once, respecting any returned retry delay. Do not repeat a terminal failure with unchanged arguments.
   - `INVALID_INPUT`: correct the named `field` or `fields` using the tool schema.
   - `RESULT_TOO_LARGE`: narrow the date range, account, filters, or page size, or follow the returned cursor.
-  - `INSUFFICIENT_SCOPE`: tell the user to reconnect Better Off with the named permission.
+  - `INSUFFICIENT_SCOPE`: tell the user to reconnect BetterOff with the named permission.
   - `INCOMPLETE_DATA`: name the missing inputs and follow the returned next step.
   - `CORE_REQUIRED`: this tool needs the Plus plan; the other tools work on every plan. Tell the user, give the returned `nextStep`, and do not retry. Do not substitute other reads for the missing data.
-  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in Better Off settings. Stop reading until the user confirms the change.
-  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect Better Off; do not switch credentials or channels to bypass it.
+  - `AGENT_AI_CONSENT_REQUIRED`: explain that every household member must enable Chat data access in BetterOff settings. Stop reading until the user confirms the change.
+  - `AGENT_GRANT_REVOKED`: the connection expired or was disconnected. Ask the user to reconnect BetterOff; do not switch credentials or channels to bypass it.
 - After the user fixes a blocker, retry the blocked step and resume the original task. Confirm success from a usable result, not from sign-in alone.
 - The tools cannot move money, pay bills, or place trades. Do not give individualized investment, tax, or legal advice.
 
@@ -36,7 +36,7 @@ The user's explicit instructions take priority over this skill. When the `househ
 
 When the simulation refuses with `missingInputs`:
 
-1. Name each listed debt and its missing inputs. For missing balances or currency conversions, direct the user to resolve the source data in Better Off. Debt-detail proposals cannot supply balances or exchange rates.
+1. Name each listed debt and its missing inputs. For missing balances or currency conversions, direct the user to resolve the source data in BetterOff. Debt-detail proposals cannot supply balances or exchange rates.
 2. For missing APRs or minimum payments, ask the user for those terms. Do not estimate them.
 3. If the user supplies supported terms, call `betteroff_propose_debt_details` with the `debtId` from `betteroff_list_debts`. Set `interestRate` and `minimumPayment` to the supplied values or null to leave them unchanged, and set `nextPaymentDueDate` to null unless the user supplied it. Do not send a proposal when no supported term was supplied.
 4. Give each returned `reviewUrl`. Offer to rerun the simulation after approval and resolution of any remaining missing balances or conversions. Approval alone does not resolve those missing inputs.
